@@ -35,6 +35,24 @@
   <h3 style="color:#261a24;">How to use it</h3>
   <ol style="font-size:15px;line-height:1.5;color:#4a4a4a;"><li style='margin-bottom:8px;'>Install the module and open the <b>MCP Server</b> app.</li><li style='margin-bottom:8px;'>In <b>Exposed Models</b>, add the models the AI may use and tick the operations you allow.</li><li style='margin-bottom:8px;'>In <b>Keys</b>, click <b>New Key</b>, choose the user it runs as, and copy the key.</li><li style='margin-bottom:8px;'>In your MCP client, add a remote server with URL <code>https://your-odoo/mcp</code> and header <code>Authorization: Bearer YOUR-KEY</code>.</li></ol>
   <h3 style="color:#261a24;">Good to know</h3><p style="color:#4a4a4a;">No delete tool is provided, on purpose. On a multi-database server, the request must reach the right database (dbfilter or a dedicated hostname).</p>
+
+  <h3 style="color:#261a24;margin-top:34px;">In Odoo</h3>
+  <figure style="margin:0 0 26px 0;">
+    <img src="main_screenshot.png" style="max-width:100%;border:1px solid #e6dfe4;border-radius:8px;display:block;" alt="Exposed Models"/>
+    <figcaption style="color:#6b6b6b;font-size:14px;padding-top:8px;">Exposed Models: nothing is reachable until you add it here, with read, create and update switched on per model.</figcaption>
+  </figure>
+  <figure style="margin:0 0 26px 0;">
+    <img src="02_new_key.png" style="max-width:100%;border:1px solid #e6dfe4;border-radius:8px;display:block;" alt="Generating a key. It runs as one Odoo user and is shown only once."/>
+    <figcaption style="color:#6b6b6b;font-size:14px;padding-top:8px;">Generating a key. It runs as one Odoo user and is shown only once.</figcaption>
+  </figure>
+  <figure style="margin:0 0 26px 0;">
+    <img src="03_keys.png" style="max-width:100%;border:1px solid #e6dfe4;border-radius:8px;display:block;" alt="Keys in use, with the user each runs as and when it was last used. Delete one to revoke it."/>
+    <figcaption style="color:#6b6b6b;font-size:14px;padding-top:8px;">Keys in use, with the user each runs as and when it was last used. Delete one to revoke it.</figcaption>
+  </figure>
+  <figure style="margin:0 0 26px 0;">
+    <img src="04_call_log.png" style="max-width:100%;border:1px solid #e6dfe4;border-radius:8px;display:block;" alt="Every tool call logged"/>
+    <figcaption style="color:#6b6b6b;font-size:14px;padding-top:8px;">Every tool call logged: user, key, tool, model, arguments and outcome.</figcaption>
+  </figure>
   <div style="margin-top:34px;padding:22px;background:#261a24;border-radius:12px;color:#ffffff;">
     <h3 style="margin:0 0 6px 0;color:#ffffff;">Support</h3>
     <p style="margin:0;color:#d7c8d4;">Built and maintained by Mohammad Najjarine, Odoo consultant.
