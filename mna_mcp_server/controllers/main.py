@@ -130,7 +130,7 @@ class McpController(http.Controller):
         # Stateless server: no SSE stream and no sessions to delete.
         return request.make_response("", headers=[("Allow", "POST")], status=405)
 
-    # readonly=False: Odoo 18 serves auth="none" routes on a read-only cursor by
+    # readonly=False: Odoo serves auth="none" routes on a read-only cursor by
     # default, which would break create/update tools and the audit log.
     @http.route(
         "/mcp",

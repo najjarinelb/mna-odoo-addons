@@ -12,7 +12,7 @@ class TestMcp(HttpCase):
             {
                 "name": "MCP Tester",
                 "login": "mcp_tester",
-                "groups_id": [(6, 0, [cls.env.ref("base.group_user").id, cls.env.ref("base.group_partner_manager").id])],
+                "group_ids": [(6, 0, [cls.env.ref("base.group_user").id, cls.env.ref("base.group_partner_manager").id])],
             }
         )
         _rec, cls.key = cls.env["mna.mcp.key"]._generate("test", cls.user)

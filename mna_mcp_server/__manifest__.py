@@ -1,14 +1,14 @@
 {
     "name": "MCP Server for Odoo (Community)",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Productivity/Tools",
-    "summary": "Connect Claude, ChatGPT and any MCP client to Odoo 18 Community or Enterprise over a native /mcp endpoint",
+    "summary": "Connect Claude, ChatGPT and any MCP client to Odoo 19 Community or Enterprise over a native /mcp endpoint",
     "description": """
 MCP Server for Odoo Community
 =============================
 
 Odoo 20 ships a native MCP server, but only in Enterprise. This module brings
-the same capability to Odoo 18, Community included, with no bridge
+the same capability to Odoo 19, Community included, with no bridge
 process and no middleware: your Odoo instance itself answers Model Context
 Protocol requests at ``/mcp``.
 

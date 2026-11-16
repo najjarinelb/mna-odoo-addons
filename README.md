@@ -1,15 +1,15 @@
 # mna-odoo-addons
 
 Free, open-source Odoo modules by [Mohammad Najjarine](https://github.com/najjarinelb).
-Branch names follow the Odoo series: this is `18.0`.
+Branch names follow the Odoo series: this is `19.0`.
 
 | Module | What it does |
 |---|---|
-| [`mna_mcp_server`](mna_mcp_server/) | Native MCP server for Odoo 18, Community included. Connect Claude, ChatGPT or any MCP client at `/mcp`. |
+| [`mna_mcp_server`](mna_mcp_server/) | Native MCP server for Odoo 19, Community included. Connect Claude, ChatGPT or any MCP client at `/mcp`. |
 
 ## mna_mcp_server in two minutes
 
-Odoo 20 ships a native MCP server, but only in Enterprise. This module gives Odoo 18 the same capability with no bridge process: Odoo itself answers Model Context Protocol requests.
+Odoo 20 ships a native MCP server, but only in Enterprise. This module gives Odoo 19 the same capability with no bridge process: Odoo itself answers Model Context Protocol requests.
 
 1. Copy `mna_mcp_server` into your addons path, update the apps list, install **MCP Server for Odoo (Community)**.
 2. Open **MCP Server > Exposed Models** and add the models the AI may use. Read is on by default, create and update are per model switches.

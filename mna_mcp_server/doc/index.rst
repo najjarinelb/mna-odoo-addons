@@ -1,7 +1,7 @@
 MCP Server for Odoo (Community)
 ===============================
 
-Odoo 20 ships a native MCP server, but only in Enterprise. This module gives Odoo 18 the same thing, Community included: your Odoo answers Model Context Protocol requests at /mcp, with no bridge process and no middleware.
+Odoo 20 ships a native MCP server, but only in Enterprise. This module gives Odoo 19 the same thing, Community included: your Odoo answers Model Context Protocol requests at /mcp, with no bridge process and no middleware.
 
 Features
 --------
