@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="param_mna_mcp_enabled" model="ir.config_parameter">
+        <field name="key">mna_mcp.enabled</field>
+        <field name="value">True</field>
+    </record>
+    <!-- A safe, read-only starting point. Add or remove models in MCP Server > Exposed Models. -->
+    <record id="mcp_model_res_partner" model="mna.mcp.model">
+        <field name="model_id" ref="base.model_res_partner"/>
+    </record>
+</odoo>

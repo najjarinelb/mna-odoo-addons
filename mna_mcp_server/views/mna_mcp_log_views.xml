@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mna_mcp_log_view_list" model="ir.ui.view">
+        <field name="name">mna.mcp.log.list</field>
+        <field name="model">mna.mcp.log</field>
+        <field name="arch" type="xml">
+            <list create="0" edit="0" decoration-danger="not success">
+                <field name="create_date"/>
+                <field name="user_id"/>
+                <field name="key_id"/>
+                <field name="tool"/>
+                <field name="model"/>
+                <field name="arguments" optional="show"/>
+                <field name="success"/>
+                <field name="error" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="mna_mcp_log_view_search" model="ir.ui.view">
+        <field name="name">mna.mcp.log.search</field>
+        <field name="model">mna.mcp.log</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="tool"/>
+                <field name="model"/>
+                <field name="user_id"/>
+                <filter name="failed" string="Failed" domain="[('success', '=', False)]"/>
+                <filter name="writes" string="Writes" domain="[('tool', 'in', ['create_record', 'update_record'])]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="mna_mcp_log_action" model="ir.actions.act_window">
+        <field name="name">Call Log</field>
+        <field name="res_model">mna.mcp.log</field>
+        <field name="view_mode">list</field>
+    </record>
+</odoo>

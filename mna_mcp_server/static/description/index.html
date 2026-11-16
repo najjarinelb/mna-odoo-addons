@@ -1,0 +1,43 @@
+<section style="font-family:Inter,Helvetica,Arial,sans-serif;max-width:1100px;margin:0 auto;padding:10px 16px;">
+  <div style="text-align:center;margin-bottom:26px;">
+    <img src="banner.png" style="max-width:100%;border-radius:12px;" alt="MCP Server for Odoo (Community)"/>
+  </div>
+  <h2 style="color:#261a24;">MCP Server for Odoo (Community)</h2>
+  <p style="font-size:16px;line-height:1.6;color:#4a4a4a;">Odoo 20 ships a native MCP server, but only in Enterprise. This module gives Odoo 18 the same thing, Community included: your Odoo answers Model Context Protocol requests at <code>/mcp</code>, with no bridge process and no middleware.</p>
+  <h3 style="color:#261a24;margin-top:30px;">What you get</h3>
+  <div>
+      <div style="width:31%;min-width:240px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+        <h4 style="color:#714B67;margin:0 0 6px 0;">Deny by default</h4>
+        <p style="margin:0;color:#4a4a4a;">Nothing is reachable until you add the model to the allowlist. Read, create and update are switched on separately per model.</p>
+      </div>
+      <div style="width:31%;min-width:240px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+        <h4 style="color:#714B67;margin:0 0 6px 0;">Runs as a real user</h4>
+        <p style="margin:0;color:#4a4a4a;">Each key belongs to one Odoo user. Access rights and record rules apply exactly as they do in the interface.</p>
+      </div>
+      <div style="width:31%;min-width:240px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+        <h4 style="color:#714B67;margin:0 0 6px 0;">Keys, not passwords</h4>
+        <p style="margin:0;color:#4a4a4a;">Dedicated MCP keys, stored hashed, shown once, with optional expiry. Delete a key to revoke it instantly.</p>
+      </div>
+      <div style="width:31%;min-width:240px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+        <h4 style="color:#714B67;margin:0 0 6px 0;">Full audit log</h4>
+        <p style="margin:0;color:#4a4a4a;">Every tool call is logged with user, key, model, arguments and outcome.</p>
+      </div>
+      <div style="width:31%;min-width:240px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+        <h4 style="color:#714B67;margin:0 0 6px 0;">Eight tools</h4>
+        <p style="margin:0;color:#4a4a4a;">get_context, list_models, get_fields, search_records, count_records, read_records, create_record, update_record.</p>
+      </div>
+      <div style="width:31%;min-width:240px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+        <h4 style="color:#714B67;margin:0 0 6px 0;">Standard transport</h4>
+        <p style="margin:0;color:#4a4a4a;">Streamable HTTP, JSON-RPC 2.0, MCP revisions 2025-06-18, 2025-03-26 and 2024-11-05.</p>
+      </div>
+  </div>
+  
+  <h3 style="color:#261a24;">How to use it</h3>
+  <ol style="font-size:15px;line-height:1.5;color:#4a4a4a;"><li style='margin-bottom:8px;'>Install the module and open the <b>MCP Server</b> app.</li><li style='margin-bottom:8px;'>In <b>Exposed Models</b>, add the models the AI may use and tick the operations you allow.</li><li style='margin-bottom:8px;'>In <b>Keys</b>, click <b>New Key</b>, choose the user it runs as, and copy the key.</li><li style='margin-bottom:8px;'>In your MCP client, add a remote server with URL <code>https://your-odoo/mcp</code> and header <code>Authorization: Bearer YOUR-KEY</code>.</li></ol>
+  <h3 style="color:#261a24;">Good to know</h3><p style="color:#4a4a4a;">No delete tool is provided, on purpose. On a multi-database server, the request must reach the right database (dbfilter or a dedicated hostname).</p>
+  <div style="margin-top:34px;padding:22px;background:#261a24;border-radius:12px;color:#ffffff;">
+    <h3 style="margin:0 0 6px 0;color:#ffffff;">Support</h3>
+    <p style="margin:0;color:#d7c8d4;">Built and maintained by Mohammad Najjarine, Odoo consultant.
+    Questions, bugs or a custom need: <a style="color:#8ce6c8;" href="https://github.com/najjarinelb">github.com/najjarinelb</a></p>
+  </div>
+</section>

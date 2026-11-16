@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="mna_mcp_menu_root" name="MCP Server" sequence="250"
+              groups="base.group_system"
+              web_icon="mna_mcp_server,static/description/icon.png"/>
+    <menuitem id="mna_mcp_menu_models" name="Exposed Models" parent="mna_mcp_menu_root"
+              action="mna_mcp_model_action" sequence="10"/>
+    <menuitem id="mna_mcp_menu_keys" name="Keys" parent="mna_mcp_menu_root"
+              action="mna_mcp_key_action" sequence="20"/>
+    <menuitem id="mna_mcp_menu_logs" name="Call Log" parent="mna_mcp_menu_root"
+              action="mna_mcp_log_action" sequence="30"/>
+</odoo>

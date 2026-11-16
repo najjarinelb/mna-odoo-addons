@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mna_mcp_model_admin,mna.mcp.model admin,model_mna_mcp_model,base.group_system,1,1,1,1
+access_mna_mcp_key_admin,mna.mcp.key admin,model_mna_mcp_key,base.group_system,1,1,0,1
+access_mna_mcp_log_admin,mna.mcp.log admin,model_mna_mcp_log,base.group_system,1,0,0,1
+access_mna_mcp_key_wizard_admin,mna.mcp.key.wizard admin,model_mna_mcp_key_wizard,base.group_system,1,1,1,1

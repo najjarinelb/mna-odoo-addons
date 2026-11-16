@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mna_mcp_key_wizard_view_form" model="ir.ui.view">
+        <field name="name">mna.mcp.key.wizard.form</field>
+        <field name="model">mna.mcp.key.wizard</field>
+        <field name="arch" type="xml">
+            <form string="New MCP Key">
+                <group invisible="key">
+                    <field name="name" placeholder="e.g. Claude Desktop on my laptop"/>
+                    <field name="user_id"/>
+                    <field name="expiration_date"/>
+                </group>
+                <div invisible="not key">
+                    <div class="alert alert-warning" role="alert">
+                        Copy this key now. It is stored hashed and cannot be shown again.
+                    </div>
+                    <group>
+                        <field name="key" widget="CopyClipboardChar"/>
+                    </group>
+                    <p class="text-muted">
+                        Endpoint: <code>https://YOUR-ODOO-DOMAIN/mcp</code><br/>
+                        Header: <code>Authorization: Bearer YOUR-KEY</code>
+                    </p>
+                </div>
+                <footer>
+                    <button name="action_generate" type="object" string="Generate" class="btn-primary" invisible="key"/>
+                    <button special="cancel" string="Cancel" invisible="key"/>
+                    <button special="cancel" string="Done" class="btn-primary" invisible="not key"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="mna_mcp_key_wizard_action" model="ir.actions.act_window">
+        <field name="name">New MCP Key</field>
+        <field name="res_model">mna.mcp.key.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
