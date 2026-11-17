@@ -27,13 +27,12 @@ class TestHealthCheck(TransactionCase):
             self.assertNotIn("could not run", line.detail)
 
     def test_failed_email_is_flagged(self):
-        clean = self._run()
-        self.assertEqual(self._line(clean, "Failed Emails").status, "ok")
+        # Count what is already there: the database under test may not be clean.
+        before = self._line(self._run(), "Failed Emails").count
         self.env["mail.mail"].create({"subject": "Broken", "state": "exception"})
-        after = self._run()
-        failed = self._line(after, "Failed Emails")
+        failed = self._line(self._run(), "Failed Emails")
         self.assertEqual(failed.status, "problem")
-        self.assertEqual(failed.count, 1)
+        self.assertEqual(failed.count, before + 1)
         action = failed.action_open_records()
         self.assertEqual(action["res_model"], "mail.mail")
 
