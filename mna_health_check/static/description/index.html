@@ -1,0 +1,47 @@
+<section style="font-family:Inter,Helvetica,Arial,sans-serif;max-width:1100px;margin:0 auto;padding:10px 16px;">
+  <div style="text-align:center;margin-bottom:26px;"><img src="banner.png" style="max-width:100%;border-radius:12px;" alt="Odoo Health Check"/></div>
+  <h2 style="color:#261a24;">Odoo Health Check</h2>
+  <p style="font-size:16px;line-height:1.6;color:#4a4a4a;">Scheduled actions fail silently. Emails sit in the queue for weeks. The database doubles in size and nobody notices until the server fills up. None of this is visible anywhere in standard Odoo without digging through Technical menus one at a time. This module puts it on one screen, read-only, on demand.</p>
+  <h3 style="color:#261a24;margin-top:30px;">What you get</h3>
+  <div>
+      <div style="width:31%;min-width:240px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+        <h4 style="color:#714B67;margin:0 0 6px 0;">Scheduled actions</h4>
+        <p style="margin:0;color:#4a4a4a;">Finds actions that are switched off or past their next run time, which usually means the cron worker has stopped.</p>
+      </div>
+      <div style="width:31%;min-width:240px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+        <h4 style="color:#714B67;margin:0 0 6px 0;">Email that is going nowhere</h4>
+        <p style="margin:0;color:#4a4a4a;">Failed sends and anything stuck in the outgoing queue for more than a day.</p>
+      </div>
+      <div style="width:31%;min-width:240px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+        <h4 style="color:#714B67;margin:0 0 6px 0;">Database growth</h4>
+        <p style="margin:0;color:#4a4a4a;">Total size, the ten largest tables, and attachments stored in the database instead of on disk.</p>
+      </div>
+      <div style="width:31%;min-width:240px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+        <h4 style="color:#714B67;margin:0 0 6px 0;">Module sanity</h4>
+        <p style="margin:0;color:#4a4a4a;">Modules still marked installed whose folder has gone missing from the addons path.</p>
+      </div>
+      <div style="width:31%;min-width:240px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+        <h4 style="color:#714B67;margin:0 0 6px 0;">User hygiene</h4>
+        <p style="margin:0;color:#4a4a4a;">How many people hold full settings access, and active users who have never once logged in.</p>
+      </div>
+      <div style="width:31%;min-width:240px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+        <h4 style="color:#714B67;margin:0 0 6px 0;">Open what it found</h4>
+        <p style="margin:0;color:#4a4a4a;">Every finding has a button that opens the exact records behind it, so you can go and fix them.</p>
+      </div>
+  </div>
+
+  <h3 style="color:#261a24;margin-top:34px;">In Odoo</h3>
+  <figure style="margin:0 0 26px 0;">
+    <img src="01_health_report.png" style="max-width:100%;border:1px solid #e6dfe4;border-radius:8px;display:block;" alt="A real report"/>
+    <figcaption style="color:#6b6b6b;font-size:14px;padding-top:8px;">A real report: three problems found, with the records one click away.</figcaption>
+  </figure>
+  <h3 style="color:#261a24;">How to use it</h3>
+  <ol style="font-size:15px;line-height:1.5;color:#4a4a4a;"><li style='margin-bottom:8px;'>Install the module and open the <b>Health Check</b> app. It runs immediately.</li><li style='margin-bottom:8px;'>Red is a problem, amber is worth a look, green is fine.</li><li style='margin-bottom:8px;'>Click <b>Open</b> on any line to see the records behind it.</li><li style='margin-bottom:8px;'>Click <b>Run Again</b> after you have fixed something.</li></ol>
+  <h3 style="color:#261a24;">Good to know</h3>
+  <p style="color:#4a4a4a;">Everything is read-only and nothing leaves your database: there is no phoning home, no external service and no data collection. Only users with settings access can run it. If one check cannot run on your version it reports itself and the rest still complete.</p>
+  <div style="margin-top:34px;padding:22px;background:#261a24;border-radius:12px;color:#ffffff;">
+    <h3 style="margin:0 0 6px 0;color:#ffffff;">Support</h3>
+    <p style="margin:0;color:#d7c8d4;">Built and maintained by Mohammad Najjarine, Odoo consultant.
+    Questions, bugs or a custom need: <a style="color:#8ce6c8;" href="https://github.com/najjarinelb">github.com/najjarinelb</a></p>
+  </div>
+</section>
