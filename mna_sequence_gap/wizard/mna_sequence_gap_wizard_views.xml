@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mna_sequence_gap_wizard_view_form" model="ir.ui.view">
+        <field name="name">mna.sequence.gap.wizard.form</field>
+        <field name="model">mna.sequence.gap.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Sequence Check">
+                <group invisible="has_run">
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                    </group>
+                    <group>
+                        <field name="include_draft"/>
+                        <field name="check_date_order"/>
+                    </group>
+                </group>
+                <group invisible="has_run">
+                    <field name="journal_ids" widget="many2many_tags"
+                           placeholder="Leave empty to check every journal..."
+                           options="{'no_create': True}"/>
+                </group>
+                <div invisible="not has_run">
+                    <div class="alert alert-success" role="alert"
+                         invisible="gap_count != 0 or duplicate_count != 0 or date_order_count != 0">
+                        <field name="checked_count" class="oe_inline" readonly="1"/>
+                        documents checked. No gaps, no duplicates, nothing out of order.
+                    </div>
+                    <div class="alert alert-warning" role="alert"
+                         invisible="gap_count == 0 and duplicate_count == 0 and date_order_count == 0">
+                        <field name="checked_count" class="oe_inline" readonly="1"/> documents checked:
+                        <field name="gap_count" class="oe_inline" readonly="1"/> missing,
+                        <field name="duplicate_count" class="oe_inline" readonly="1"/> duplicated,
+                        <field name="date_order_count" class="oe_inline" readonly="1"/> out of date order.
+                    </div>
+                    <field name="line_ids" readonly="1">
+                        <list create="false" decoration-danger="kind == 'duplicate'"
+                              decoration-warning="kind == 'gap'">
+                            <field name="journal_id"/>
+                            <field name="expected_name" string="Document"/>
+                            <field name="kind" widget="badge"
+                                   decoration-danger="kind == 'duplicate'"
+                                   decoration-warning="kind == 'gap'"
+                                   decoration-info="kind == 'date_order'"/>
+                            <field name="detail"/>
+                            <button name="action_open_documents" type="object" string="Open"
+                                    icon="fa-external-link" invisible="not move_ids"/>
+                            <field name="move_ids" column_invisible="1"/>
+                        </list>
+                    </field>
+                </div>
+                <field name="has_run" invisible="1"/>
+                <footer>
+                    <button name="action_check" type="object" string="Check" class="btn-primary"
+                            invisible="has_run"/>
+                    <button name="action_check" type="object" string="Check Again"
+                            invisible="not has_run"/>
+                    <button special="cancel" string="Close"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="mna_sequence_gap_wizard_action" model="ir.actions.act_window">
+        <field name="name">Sequence Gaps &amp; Duplicates</field>
+        <field name="res_model">mna.sequence.gap.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="mna_sequence_gap_menu" name="Sequence Gaps &amp; Duplicates"
+              parent="account.menu_finance_reports"
+              action="mna_sequence_gap_wizard_action"
+              groups="account.group_account_user" sequence="90"/>
+</odoo>

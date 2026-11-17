@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mna_sequence_gap_view_list" model="ir.ui.view">
+        <field name="name">mna.sequence.gap.list</field>
+        <field name="model">mna.sequence.gap</field>
+        <field name="arch" type="xml">
+            <list create="false">
+                <field name="journal_id"/>
+                <field name="prefix"/>
+                <field name="expected_name" string="Document"/>
+                <field name="kind"/>
+                <field name="detail"/>
+            </list>
+        </field>
+    </record>
+</odoo>
