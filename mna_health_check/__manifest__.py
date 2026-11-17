@@ -38,7 +38,10 @@ stays inside your database.
         "security/ir.model.access.csv",
         "views/mna_health_check_views.xml",
     ],
-    "images": ["static/description/banner.png"],
+    "images": [
+        'static/description/01_health_report.png',
+        'static/description/banner.png',
+    ],
     "installable": True,
     "application": True,
 }
