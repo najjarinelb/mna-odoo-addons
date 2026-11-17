@@ -223,8 +223,11 @@ class MnaHealthCheck(models.TransientModel):
         }
 
     def _check_admin_users(self):
-        admins = self.env["res.users"].sudo().search(
-            [("active", "=", True), ("groups_id", "in", self.env.ref("base.group_system").id)]
+        # res.users.groups_id was renamed group_ids in Odoo 19.
+        users = self.env["res.users"]
+        field = "group_ids" if "group_ids" in users._fields else "groups_id"
+        admins = users.sudo().search(
+            [("active", "=", True), (field, "in", self.env.ref("base.group_system").id)]
         )
         internal = admins.filtered(lambda u: not u.share)
         return {

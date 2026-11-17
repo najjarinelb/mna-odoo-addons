@@ -23,6 +23,8 @@ class TestHealthCheck(TransactionCase):
         for line in check.line_ids:
             self.assertIn(line.status, ("ok", "warning", "problem"))
             self.assertTrue(line.detail)
+            # A check that crashed reports itself this way; none should.
+            self.assertNotIn("could not run", line.detail)
 
     def test_failed_email_is_flagged(self):
         clean = self._run()
