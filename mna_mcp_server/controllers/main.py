@@ -119,10 +119,12 @@ class McpController(http.Controller):
         )
 
     def _unauthorized(self, message):
+        # Deliberately no WWW-Authenticate header. This server authenticates
+        # with a static key, not OAuth, and MCP clients treat a 401 carrying
+        # WWW-Authenticate as "discover an authorization server", which starts
+        # an OAuth flow this server cannot complete.
         return self._json(
-            {"error": "unauthorized", "message": message},
-            status=401,
-            headers=[("WWW-Authenticate", 'Bearer realm="Odoo MCP"')],
+            {"error": "unauthorized", "message": message}, status=401
         )
 
     @http.route("/mcp", type="http", auth="none", methods=["GET", "DELETE"], csrf=False)
