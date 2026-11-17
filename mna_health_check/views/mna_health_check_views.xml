@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mna_health_check_view_form" model="ir.ui.view">
+        <field name="name">mna.health.check.form</field>
+        <field name="model">mna.health.check</field>
+        <field name="arch" type="xml">
+            <form create="false">
+                <header>
+                    <button name="action_refresh" type="object" string="Run Again" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Health Check</h1>
+                        <div class="text-muted">
+                            <field name="database" readonly="1" class="oe_inline"/>
+                            &#183;
+                            <field name="db_size" readonly="1" class="oe_inline"/>
+                            &#183;
+                            <field name="date" readonly="1" class="oe_inline"/>
+                        </div>
+                    </div>
+                    <div class="alert alert-danger" role="alert" invisible="problem_count == 0">
+                        <field name="problem_count" class="oe_inline" readonly="1"/>
+                        problem(s) need attention.
+                    </div>
+                    <div class="alert alert-warning" role="alert"
+                         invisible="warning_count == 0 or problem_count != 0">
+                        <field name="warning_count" class="oe_inline" readonly="1"/>
+                        warning(s) worth a look.
+                    </div>
+                    <div class="alert alert-success" role="alert"
+                         invisible="problem_count != 0 or warning_count != 0">
+                        Everything checked out clean.
+                    </div>
+                    <field name="line_ids" readonly="1">
+                        <list decoration-danger="status == 'problem'"
+                              decoration-warning="status == 'warning'" create="false">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="name"/>
+                            <field name="status" widget="badge"
+                                   decoration-success="status == 'ok'"
+                                   decoration-warning="status == 'warning'"
+                                   decoration-danger="status == 'problem'"/>
+                            <field name="count" string="Records"/>
+                            <field name="detail"/>
+                            <button name="action_open_records" type="object" string="Open"
+                                    icon="fa-external-link" invisible="not res_model"/>
+                            <field name="res_model" column_invisible="1"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="mna_health_check_action" model="ir.actions.server">
+        <field name="name">Health Check</field>
+        <field name="model_id" ref="model_mna_health_check"/>
+        <field name="state">code</field>
+        <field name="code">action = model.action_run()</field>
+    </record>
+
+    <menuitem id="mna_health_check_menu_root" name="Health Check" sequence="260"
+              groups="base.group_system"
+              action="mna_health_check_action"
+              web_icon="mna_health_check,static/description/icon.png"/>
+</odoo>
