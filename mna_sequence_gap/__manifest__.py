@@ -40,8 +40,8 @@ Read-only. It changes nothing, posts nothing, and renumbers nothing.
         "views/mna_sequence_gap_views.xml",
     ],
     "images": [
-        'static/description/01_sequence_report.png',
         'static/description/banner.png',
+        'static/description/01_sequence_report.png',
     ],
     "installable": True,
     "application": False,
