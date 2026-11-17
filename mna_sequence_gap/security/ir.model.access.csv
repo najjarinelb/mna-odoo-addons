@@ -1,3 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_mna_sequence_gap_wizard,mna.sequence.gap.wizard,model_mna_sequence_gap_wizard,account.group_account_user,1,1,1,1
-access_mna_sequence_gap,mna.sequence.gap,model_mna_sequence_gap,account.group_account_user,1,1,1,1
+access_mna_sequence_gap_wizard,mna.sequence.gap.wizard,model_mna_sequence_gap_wizard,account.group_account_invoice,1,1,1,1
+access_mna_sequence_gap,mna.sequence.gap,model_mna_sequence_gap,account.group_account_invoice,1,1,1,1

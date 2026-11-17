@@ -72,5 +72,5 @@
     <menuitem id="mna_sequence_gap_menu" name="Sequence Gaps &amp; Duplicates"
               parent="account.menu_finance_reports"
               action="mna_sequence_gap_wizard_action"
-              groups="account.group_account_user" sequence="90"/>
+              groups="account.group_account_invoice" sequence="90"/>
 </odoo>
