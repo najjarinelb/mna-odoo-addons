@@ -39,7 +39,10 @@ Read-only. It changes nothing, posts nothing, and renumbers nothing.
         "wizard/mna_sequence_gap_wizard_views.xml",
         "views/mna_sequence_gap_views.xml",
     ],
-    "images": ["static/description/banner.png"],
+    "images": [
+        'static/description/01_sequence_report.png',
+        'static/description/banner.png',
+    ],
     "installable": True,
     "application": False,
 }

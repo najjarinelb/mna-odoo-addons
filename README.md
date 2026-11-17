@@ -6,6 +6,7 @@ Branch names follow the Odoo series: this is `18.0`.
 | Module | What it does |
 |---|---|
 | [`mna_health_check`](mna_health_check/) | One screen for failed scheduled actions, stuck emails, database growth and user hygiene. |
+| [`mna_sequence_gap`](mna_sequence_gap/) | Find missing numbers, duplicates and dates out of order in invoice sequences, for audit and VAT. |
 | [`mna_mcp_server`](mna_mcp_server/) | Native MCP server for Odoo 18, Community included. Connect Claude, ChatGPT or any MCP client at `/mcp`. |
 
 ## mna_mcp_server in two minutes
