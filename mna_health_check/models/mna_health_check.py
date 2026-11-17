@@ -19,6 +19,11 @@ class MnaHealthCheck(models.TransientModel):
     database = fields.Char(readonly=True)
     db_size = fields.Char(string="Database Size", readonly=True)
 
+    @api.depends("date")
+    def _compute_display_name(self):
+        for check in self:
+            check.display_name = _("Health Check")
+
     @api.depends("line_ids.status")
     def _compute_counts(self):
         for check in self:
