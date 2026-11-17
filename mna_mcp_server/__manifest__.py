@@ -45,7 +45,7 @@ API key, so a salesperson's key cannot read accounting.
     ],
     "images": [
         'static/description/banner.png',
-        'static/description/main_screenshot.png',
+        'static/description/01_exposed_models.png',
         'static/description/02_new_key.png',
         'static/description/03_keys.png',
         'static/description/04_call_log.png',
