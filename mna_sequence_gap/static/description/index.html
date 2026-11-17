@@ -1,0 +1,47 @@
+<section style="font-family:Inter,Helvetica,Arial,sans-serif;max-width:1100px;margin:0 auto;padding:10px 16px;">
+  <div style="text-align:center;margin-bottom:26px;"><img src="banner.png" style="max-width:100%;border-radius:12px;" alt="Sequence Gap & Duplicate Report"/></div>
+  <h2 style="color:#261a24;">Sequence Gap & Duplicate Report</h2>
+  <p style="font-size:16px;line-height:1.6;color:#4a4a4a;">Tax authorities in the Gulf, and auditors almost everywhere, expect invoice numbering to be unbroken: no missing numbers, no repeats. Odoo numbers documents well but gives you no way to prove it, and gaps do appear in practice, usually from a deleted draft, a reset sequence, or a number set by hand. This report checks, and shows you exactly which documents to look at.</p>
+  <h3 style="color:#261a24;margin-top:30px;">What you get</h3>
+  <div>
+      <div style="width:31%;min-width:240px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+        <h4 style="color:#714B67;margin:0 0 6px 0;">Gaps</h4>
+        <p style="margin:0;color:#4a4a4a;">Numbers that should exist between the first and last document of a sequence but do not.</p>
+      </div>
+      <div style="width:31%;min-width:240px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+        <h4 style="color:#714B67;margin:0 0 6px 0;">Duplicates</h4>
+        <p style="margin:0;color:#4a4a4a;">The same number used twice. Odoo's unique index already prevents this among posted documents, so in practice this catches a draft reusing a posted number, and data migrated in from another system.</p>
+      </div>
+      <div style="width:31%;min-width:240px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+        <h4 style="color:#714B67;margin:0 0 6px 0;">Dates out of order</h4>
+        <p style="margin:0;color:#4a4a4a;">A higher number carrying an earlier date than the one before it, which auditors query as often as gaps.</p>
+      </div>
+      <div style="width:31%;min-width:240px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+        <h4 style="color:#714B67;margin:0 0 6px 0;">Understands your prefixes</h4>
+        <p style="margin:0;color:#4a4a4a;">Documents are grouped by their real prefix, so a sequence that resets yearly or monthly is read correctly rather than reported as one enormous gap.</p>
+      </div>
+      <div style="width:31%;min-width:240px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+        <h4 style="color:#714B67;margin:0 0 6px 0;">Any journal, any period</h4>
+        <p style="margin:0;color:#4a4a4a;">Check one journal or all of them, over any date range, with or without drafts.</p>
+      </div>
+      <div style="width:31%;min-width:240px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+        <h4 style="color:#714B67;margin:0 0 6px 0;">Open what it found</h4>
+        <p style="margin:0;color:#4a4a4a;">Every duplicate and every out-of-order document has a button that opens the records themselves.</p>
+      </div>
+  </div>
+
+  <h3 style="color:#261a24;margin-top:34px;">In Odoo</h3>
+  <figure style="margin:0 0 26px 0;">
+    <img src="01_sequence_report.png" style="max-width:100%;border:1px solid #e6dfe4;border-radius:8px;display:block;" alt="A real check"/>
+    <figcaption style="color:#6b6b6b;font-size:14px;padding-top:8px;">A real check: three missing numbers, one duplicate and five documents dated out of order.</figcaption>
+  </figure>
+  <h3 style="color:#261a24;">How to use it</h3>
+  <ol style="font-size:15px;line-height:1.5;color:#4a4a4a;"><li style='margin-bottom:8px;'>Go to <b>Accounting &gt; Reporting &gt; Sequence Gaps &amp; Duplicates</b>.</li><li style='margin-bottom:8px;'>Pick the period, and the journals if you want only some.</li><li style='margin-bottom:8px;'>Click <b>Check</b>.</li><li style='margin-bottom:8px;'>Click <b>Open</b> on any finding to see the documents behind it.</li></ol>
+  <h3 style="color:#261a24;">Good to know</h3>
+  <p style="color:#4a4a4a;">Completely read-only. It never renumbers, posts or changes anything, and documents whose reference does not end in digits are skipped rather than guessed at. A gap is not automatically a problem: a cancelled document legitimately leaves one, and this report tells you where to look rather than what to conclude.</p>
+  <div style="margin-top:34px;padding:22px;background:#261a24;border-radius:12px;color:#ffffff;">
+    <h3 style="margin:0 0 6px 0;color:#ffffff;">Support</h3>
+    <p style="margin:0;color:#d7c8d4;">Built and maintained by Mohammad Najjarine, Odoo consultant.
+    Questions, bugs or a custom need: <a style="color:#8ce6c8;" href="https://github.com/najjarinelb">github.com/najjarinelb</a></p>
+  </div>
+</section>
