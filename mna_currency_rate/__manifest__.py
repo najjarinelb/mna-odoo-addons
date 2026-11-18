@@ -57,7 +57,12 @@ written against that company's own currency.
         "views/currency_rate_log_views.xml",
         "views/res_config_settings_views.xml",
     ],
-    "images": ["static/description/banner.png"],
+    "images": [
+        "static/description/banner.png",
+        "static/description/01_settings.png",
+        "static/description/02_updates.png",
+        "static/description/03_currencies.png",
+    ],
     "installable": True,
     "application": False,
 }
