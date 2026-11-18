@@ -16,17 +16,25 @@ class TestMcpToolPacks(HttpCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        groups = [
+            (4, cls.env.ref(xmlid).id)
+            for xmlid in (
+                "base.group_user",
+                "account.group_account_invoice",
+                "sales_team.group_sale_salesman",
+                "stock.group_stock_user",
+                "purchase.group_purchase_user",
+            )
+        ]
+        # res.users.groups_id was renamed group_ids in Odoo 19.
+        groups_field = (
+            "group_ids" if "group_ids" in cls.env["res.users"]._fields else "groups_id"
+        )
         cls.user = cls.env["res.users"].create(
             {
                 "name": "MCP Pack Tester",
                 "login": "mcp_pack_tester",
-                "groups_id": [
-                    (4, cls.env.ref("base.group_user").id),
-                    (4, cls.env.ref("account.group_account_invoice").id),
-                    (4, cls.env.ref("sales_team.group_sale_salesman").id),
-                    (4, cls.env.ref("stock.group_stock_user").id),
-                    (4, cls.env.ref("purchase.group_purchase_user").id),
-                ],
+                groups_field: groups,
             }
         )
         _record, cls.secret = cls.env["mna.mcp.key"]._generate("pack tests", cls.user)
@@ -293,7 +301,10 @@ class TestMcpToolPacks(HttpCase):
                         "product_qty": 4,
                         "price_unit": 25.0,
                         "date_planned": date.today().isoformat() + " 10:00:00",
-                        "taxes_id": [(5, 0, 0)],
+                        # purchase.order.line.taxes_id became tax_ids in 19.
+                        ("tax_ids" if "tax_ids" in
+                         self.env["purchase.order.line"]._fields
+                         else "taxes_id"): [(5, 0, 0)],
                     })
                 ],
             }
