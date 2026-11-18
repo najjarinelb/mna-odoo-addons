@@ -22,6 +22,23 @@ class McpToolError(Exception):
     """Raised by a tool to report a failure back to the model."""
 
 
+# Tools contributed by other modules. A module adds its own tools by
+# subclassing the controller (so its ``_tool_<name>`` methods land on the
+# same class) and calling ``register_tool`` at import time.
+#
+# ``available`` is optional and receives the environment. Return False to
+# hide the tool, which is how a pack keeps quiet when the app it reports on
+# is not installed. A model is better left out of tools/list than offered
+# and then failing on every call.
+EXTRA_TOOLS = []
+
+
+def register_tool(spec, available=None):
+    spec = dict(spec, _available=available)
+    EXTRA_TOOLS[:] = [t for t in EXTRA_TOOLS if t["name"] != spec["name"]] + [spec]
+    return spec
+
+
 def _obj(properties, required=()):
     return {"type": "object", "properties": properties, "required": list(required)}
 
@@ -176,7 +193,7 @@ class McpController(http.Controller):
         handler = {
             "initialize": self._initialize,
             "ping": lambda p: {},
-            "tools/list": lambda p: {"tools": TOOLS},
+            "tools/list": lambda p: {"tools": self._tools_list()},
             "tools/call": lambda p: self._tools_call(p, key),
         }.get(method)
         if not handler:
@@ -203,10 +220,23 @@ class McpController(http.Controller):
             ),
         }
 
+    def _tools_list(self):
+        tools = list(TOOLS)
+        for spec in EXTRA_TOOLS:
+            predicate = spec.get("_available")
+            try:
+                if predicate and not predicate(request.env):
+                    continue
+            except Exception:  # noqa: BLE001 - a broken pack must not hide the core tools
+                _logger.exception("MCP tool %s availability check failed", spec["name"])
+                continue
+            tools.append({k: v for k, v in spec.items() if not k.startswith("_")})
+        return tools
+
     def _tools_call(self, params, key):
         name = params.get("name")
         arguments = params.get("arguments") or {}
-        if name not in TOOL_NAMES:
+        if name not in TOOL_NAMES and name not in {t["name"] for t in EXTRA_TOOLS}:
             raise McpToolError("Unknown tool: %s" % name)
         if not isinstance(arguments, dict):
             raise McpToolError("Tool arguments must be an object.")
