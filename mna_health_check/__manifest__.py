@@ -39,8 +39,9 @@ stays inside your database.
         "views/mna_health_check_views.xml",
     ],
     "images": [
-        'static/description/banner.png',
-        'static/description/01_health_report.png',
+        "static/description/banner.png",
+        "static/description/01_health_report.png",
+        "static/description/02_failed_emails.png",
     ],
     "installable": True,
     "application": True,
