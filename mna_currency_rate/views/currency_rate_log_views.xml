@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mna_currency_rate_log_list" model="ir.ui.view">
+        <field name="name">mna.currency.rate.log.list</field>
+        <field name="model">mna.currency.rate.log</field>
+        <field name="arch" type="xml">
+            <list string="Rate Updates" create="false" edit="false"
+                  decoration-danger="state == 'fail'">
+                <field name="create_date" string="Run at"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="provider"/>
+                <field name="rate_count"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'ok'"
+                       decoration-danger="state == 'fail'"/>
+                <field name="message"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_mna_currency_rate_log" model="ir.actions.act_window">
+        <field name="name">Rate Updates</field>
+        <field name="res_model">mna.currency.rate.log</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No rate update has run yet</p>
+            <p>Switch automatic rates on in Accounting settings, or use
+               Update now to fetch them immediately.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_mna_currency_rate_log"
+              name="Rate Updates"
+              parent="account.menu_finance_configuration"
+              action="action_mna_currency_rate_log"
+              sequence="90"
+              groups="account.group_account_manager"/>
+</odoo>

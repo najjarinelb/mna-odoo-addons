@@ -1,0 +1,122 @@
+<!--
+  Written for the Apps Store sanitiser, which strips background colours,
+  flex and gap but keeps border, padding, colour and table layout. So
+  nothing here relies on a background for contrast, and the columns are
+  a table rather than flexbox. No max-width either: the store renders
+  this inside its own column and constraining it leaves the description
+  narrower than the page around it.
+-->
+<section style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,system-ui,sans-serif;color:#14201f;line-height:1.62;">
+
+  <img src="banner.png" style="width:100%;height:auto;display:block;border-radius:12px;border:1px solid #e4dcce;" alt="Currency Rate Auto Update for Odoo Community"/>
+
+  <p style="margin:24px 0 0;font-size:18px;color:#44524f;">
+    Automatic daily exchange rates for Odoo Community, from free providers
+    that need no account and no API key.
+  </p>
+
+  <p style="margin:14px 0 0;font-size:15px;color:#0a4c41;font-weight:700;">
+    Odoo 18.0 &nbsp;&middot;&nbsp; Odoo 19.0 &nbsp;&middot;&nbsp; Community &amp; Enterprise
+    &nbsp;&middot;&nbsp; LGPL-3 &nbsp;&middot;&nbsp; 17 automated tests
+  </p>
+
+  <h2 style="font-size:28px;margin:44px 0 6px;color:#0a4c41;">Odoo only does this in Enterprise</h2>
+  <p style="margin:0 0 14px;color:#44524f;font-size:17px;">
+    Automatic rate updates ship with Odoo Enterprise. On Community there is
+    nothing, so every company running more than one currency either types
+    rates in by hand each morning or quietly lets them drift. A stale rate is
+    not a cosmetic problem: it goes into the invoice, the stock valuation, the
+    unrealised gain and every report that touches a foreign currency.
+  </p>
+
+  <h2 style="font-size:28px;margin:40px 0 6px;color:#0a4c41;">Three free providers</h2>
+  <p style="margin:0 0 14px;color:#44524f;font-size:17px;">
+    The European Central Bank daily reference rates, the Frankfurter mirror
+    with a JSON API, and the open.er-api dollar feed. All three are free to
+    use and none of them asks you to register. Pick one per company and
+    switch if it ever goes quiet.
+  </p>
+
+  <h2 style="font-size:28px;margin:40px 0 6px;color:#0a4c41;">The part most modules get wrong</h2>
+  <p style="margin:0 0 14px;color:#44524f;font-size:17px;">
+    Providers publish against their own base. The ECB quotes everything
+    against the euro; most JSON feeds quote against the dollar. Odoo stores a
+    rate as units of the foreign currency per one unit of <em>your company's</em>
+    currency.
+  </p>
+  <p style="margin:0 0 14px;color:#44524f;font-size:17px;">
+    So if your company runs in dollars and a euro based feed is written in
+    unchanged, Odoo ends up holding pounds per euro and labelling it pounds
+    per dollar. Every conversion is then wrong by the EUR/USD rate, and
+    nothing about it looks broken on screen.
+  </p>
+  <p style="margin:0;color:#14201f;font-size:17px;font-weight:700;">
+    This module divides every quote through by your own currency's rate, so
+    the whole set is rebased onto your company currency whatever base it
+    arrived in. There is a test that proves it through Odoo's own converter.
+  </p>
+
+  <h2 style="font-size:28px;margin:44px 0 18px;color:#0a4c41;">What else it does properly</h2>
+
+  <table width="100%" cellspacing="0" cellpadding="0" style="width:100%;border-collapse:separate;">
+    <tbody>
+      <tr>
+        <td valign="top" width="50%" style="width:50%;padding:0 8px 16px 0;">
+          <div style="border:1px solid #cfd8d5;border-radius:12px;padding:18px 20px;">
+            <h3 style="margin:0 0 7px;font-size:18px;color:#0a4c41;">Only the currencies you use</h3>
+            <p style="margin:0;color:#44524f;">Writes rates for the currencies you have activated, not the whole ISO list. No hundreds of unread rows per day.</p>
+          </div>
+        </td>
+        <td valign="top" width="50%" style="width:50%;padding:0 0 16px 8px;">
+          <div style="border:1px solid #cfd8d5;border-radius:12px;padding:18px 20px;">
+            <h3 style="margin:0 0 7px;font-size:18px;color:#0a4c41;">One row per day</h3>
+            <p style="margin:0;color:#44524f;">A second run on the same date updates the existing rate instead of appending another, so the rate table stays readable.</p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top" width="50%" style="width:50%;padding:0 8px 16px 0;">
+          <div style="border:1px solid #cfd8d5;border-radius:12px;padding:18px 20px;">
+            <h3 style="margin:0 0 7px;font-size:18px;color:#0a4c41;">A failure never damages good rates</h3>
+            <p style="margin:0;color:#44524f;">If the provider is down the run is logged and skipped. The rates you already have are left exactly as they were.</p>
+          </div>
+        </td>
+        <td valign="top" width="50%" style="width:50%;padding:0 0 16px 8px;">
+          <div style="border:1px solid #cfd8d5;border-radius:12px;padding:18px 20px;">
+            <h3 style="margin:0 0 7px;font-size:18px;color:#0a4c41;">You can see it working</h3>
+            <p style="margin:0;color:#44524f;">A log row for every run. A provider that quietly started failing three weeks ago is visible, instead of surfacing at month end.</p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top" width="50%" style="width:50%;padding:0 8px 16px 0;">
+          <div style="border:1px solid #cfd8d5;border-radius:12px;padding:18px 20px;">
+            <h3 style="margin:0 0 7px;font-size:18px;color:#0a4c41;">Multi-company</h3>
+            <p style="margin:0;color:#44524f;">Each company picks its own provider and frequency, and rates are written against that company's own currency.</p>
+          </div>
+        </td>
+        <td valign="top" width="50%" style="width:50%;padding:0 0 16px 8px;">
+          <div style="border:1px solid #cfd8d5;border-radius:12px;padding:18px 20px;">
+            <h3 style="margin:0 0 7px;font-size:18px;color:#0a4c41;">Sensible retries</h3>
+            <p style="margin:0;color:#44524f;">A company whose last run failed is retried on the next cron rather than waiting out a weekly or monthly interval.</p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 style="font-size:28px;margin:40px 0 10px;color:#0a4c41;">How to use it</h2>
+  <p style="margin:0;color:#44524f;font-size:17px;">
+    Install, then go to Accounting, Configuration, Settings, Exchange Rates.
+    Switch it on, choose a provider and a frequency, and press Update now to
+    confirm it works. A daily scheduled action does the rest. The run history
+    is under Accounting, Configuration, Rate Updates.
+  </p>
+
+  <h2 style="font-size:28px;margin:40px 0 10px;color:#0a4c41;">Free and open source</h2>
+  <p style="margin:0;color:#44524f;font-size:17px;">
+    LGPL-3. Source on GitHub, issues and pull requests welcome.
+    Maintained by Mohammad Najjarine.
+  </p>
+
+</section>

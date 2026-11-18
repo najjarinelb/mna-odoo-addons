@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_cron_mna_currency_rate" model="ir.cron">
+        <field name="name">Currency Rates: fetch from provider</field>
+        <field name="model_id" ref="base.model_res_company"/>
+        <field name="state">code</field>
+        <field name="code">model._mna_cron_update_rates()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <!--
+          Runs daily for every database, and each company's own
+          frequency decides whether it is actually due. One scheduled
+          action is easier to reason about than one per company, and it
+          keeps the retry of a failed provider to the next day rather
+          than the next month.
+        -->
+        <field name="active" eval="True"/>
+    </record>
+</odoo>

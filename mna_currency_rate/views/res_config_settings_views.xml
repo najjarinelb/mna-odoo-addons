@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_mna_rate" model="ir.ui.view">
+        <field name="name">res.config.settings.form.mna.currency.rate</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='analytic']" position="before">
+                <block title="Exchange Rates" id="mna_currency_rate_settings">
+                    <setting id="mna_rate_setting"
+                             help="Odoo updates rates automatically only in Enterprise. This fetches them on a schedule from a free provider that needs no account and no API key.">
+                        <field name="mna_rate_enabled"/>
+                        <div class="content-group mt-2" invisible="not mna_rate_enabled">
+                            <div class="row mt-2">
+                                <label for="mna_rate_provider" class="col-lg-4 o_light_label"/>
+                                <field name="mna_rate_provider"/>
+                            </div>
+                            <div class="row mt-2">
+                                <label for="mna_rate_interval" class="col-lg-4 o_light_label"/>
+                                <field name="mna_rate_interval"/>
+                            </div>
+                            <div class="row mt-3">
+                                <button name="action_mna_update_rates_now"
+                                        type="object"
+                                        string="Update now"
+                                        class="btn btn-secondary"/>
+                            </div>
+                            <div class="row mt-3" invisible="not mna_rate_last_sync">
+                                <label for="mna_rate_last_sync" class="col-lg-4 o_light_label"/>
+                                <div>
+                                    <field name="mna_rate_last_sync" readonly="1"/>
+                                    <field name="mna_rate_last_message" readonly="1" class="text-muted"/>
+                                </div>
+                            </div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
