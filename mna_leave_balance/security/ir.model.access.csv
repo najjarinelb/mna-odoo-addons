@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mna_leave_balance,mna.leave.balance,model_mna_leave_balance,hr_holidays.group_hr_holidays_user,1,1,1,1
+access_mna_leave_balance_line,mna.leave.balance.line,model_mna_leave_balance_line,hr_holidays.group_hr_holidays_user,1,1,1,1
+access_mna_leave_balance_ledger,mna.leave.balance.ledger,model_mna_leave_balance_ledger,hr_holidays.group_hr_holidays_user,1,1,1,1
