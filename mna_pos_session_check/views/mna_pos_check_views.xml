@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_mna_pos_check_form" model="ir.ui.view">
+        <field name="name">mna.pos.check.form</field>
+        <field name="model">mna.pos.check</field>
+        <field name="arch" type="xml">
+            <form string="POS Session Check" create="false">
+                <header>
+                    <button name="action_refresh" type="object" string="Run Again"
+                            class="btn-primary"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Point of Sale Session Check</h1>
+                        <h3><field name="date" readonly="1"/></h3>
+                    </div>
+                    <group>
+                        <group string="Scope">
+                            <field name="config_ids" widget="many2many_tags"
+                                   options="{'no_create': True}"/>
+                            <field name="days"/>
+                            <field name="session_count" string="Sessions examined"/>
+                        </group>
+                        <group string="Thresholds">
+                            <field name="max_open_days"/>
+                            <field name="difference_threshold"/>
+                        </group>
+                        <group string="Cash differences">
+                            <field name="total_difference" string="Net"/>
+                            <field name="absolute_difference" string="Total regardless of sign"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group string="Findings">
+                            <field name="problem_count"/>
+                            <field name="warning_count"/>
+                        </group>
+                    </group>
+                    <field name="line_ids" readonly="1">
+                        <list create="false" delete="false"
+                              decoration-danger="status == 'problem'"
+                              decoration-warning="status == 'warning'"
+                              decoration-muted="status == 'ok'">
+                            <field name="name"/>
+                            <field name="status" widget="badge"
+                                   decoration-danger="status == 'problem'"
+                                   decoration-warning="status == 'warning'"
+                                   decoration-success="status == 'ok'"/>
+                            <field name="count" string="How many"/>
+                            <field name="detail"/>
+                            <field name="res_model" column_invisible="1"/>
+                            <button name="action_open_records" type="object"
+                                    string="Open" icon="fa-external-link"
+                                    invisible="not res_model"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_mna_pos_check_list" model="ir.ui.view">
+        <field name="name">mna.pos.check.list</field>
+        <field name="model">mna.pos.check</field>
+        <field name="arch" type="xml">
+            <list string="POS Session Checks" create="false">
+                <field name="date"/>
+                <field name="session_count"/>
+                <field name="problem_count" decoration-danger="problem_count &gt; 0"/>
+                <field name="warning_count" decoration-warning="warning_count &gt; 0"/>
+                <field name="absolute_difference"/>
+                <field name="currency_id" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_mna_pos_check" model="ir.actions.act_window">
+        <field name="name">Session Check</field>
+        <field name="res_model">mna.pos.check</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_mna_pos_check_run" model="ir.actions.server">
+        <field name="name">Session Check</field>
+        <field name="model_id" ref="model_mna_pos_check"/>
+        <field name="state">code</field>
+        <field name="code">action = model.action_run()</field>
+    </record>
+
+    <menuitem id="menu_mna_pos_check_run"
+              name="Session Check"
+              parent="point_of_sale.menu_point_rep"
+              action="action_mna_pos_check_run"
+              groups="point_of_sale.group_pos_manager"
+              sequence="50"/>
+
+    <menuitem id="menu_mna_pos_check_history"
+              name="Past Session Checks"
+              parent="point_of_sale.menu_point_rep"
+              action="action_mna_pos_check"
+              groups="point_of_sale.group_pos_manager"
+              sequence="51"/>
+
+</odoo>

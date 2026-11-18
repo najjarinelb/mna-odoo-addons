@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mna_pos_check_manager,mna.pos.check manager,model_mna_pos_check,point_of_sale.group_pos_manager,1,1,1,1
+access_mna_pos_check_line_manager,mna.pos.check.line manager,model_mna_pos_check_line,point_of_sale.group_pos_manager,1,1,1,1

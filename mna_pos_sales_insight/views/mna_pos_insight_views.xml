@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_mna_pos_insight_pivot" model="ir.ui.view">
+        <field name="name">mna.pos.insight.pivot</field>
+        <field name="model">mna.pos.insight</field>
+        <field name="arch" type="xml">
+            <pivot string="POS Sales Insight" sample="1">
+                <field name="user_id" type="row"/>
+                <field name="revenue" type="measure"/>
+                <field name="margin" type="measure"/>
+                <field name="discount_amount" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_mna_pos_insight_graph" model="ir.ui.view">
+        <field name="name">mna.pos.insight.graph</field>
+        <field name="model">mna.pos.insight</field>
+        <field name="arch" type="xml">
+            <graph string="POS Sales Insight" type="bar" sample="1">
+                <field name="hour_of_day"/>
+                <field name="revenue" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_mna_pos_insight_list" model="ir.ui.view">
+        <field name="name">mna.pos.insight.list</field>
+        <field name="model">mna.pos.insight</field>
+        <field name="arch" type="xml">
+            <list string="POS Sales Insight" create="false" delete="false">
+                <field name="date"/>
+                <field name="config_id"/>
+                <field name="user_id"/>
+                <field name="product_id"/>
+                <field name="qty" sum="Quantity"/>
+                <field name="revenue" sum="Revenue"/>
+                <field name="cost" sum="Cost" optional="hide"/>
+                <field name="margin" sum="Margin"/>
+                <field name="margin_percent" avg="Margin %" widget="percentage" optional="hide"/>
+                <field name="discount_amount" sum="Discount" optional="show"/>
+                <field name="has_cost" optional="hide"/>
+                <field name="currency_id" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_mna_pos_insight_search" model="ir.ui.view">
+        <field name="name">mna.pos.insight.search</field>
+        <field name="model">mna.pos.insight</field>
+        <field name="arch" type="xml">
+            <search string="POS Sales Insight">
+                <field name="product_id"/>
+                <field name="user_id"/>
+                <field name="config_id"/>
+                <field name="partner_id"/>
+                <filter name="discounted" string="Discounted only"
+                        domain="[('discount_percent', '&gt;', 0)]"/>
+                <filter name="no_cost" string="Missing a cost"
+                        domain="[('has_cost', '=', False)]"
+                        help="Lines with no cost recorded, whose margin is the full revenue."/>
+                <separator/>
+                <filter name="this_month" string="This Month"
+                        domain="[('date', '&gt;=', context_today().strftime('%Y-%m-01'))]"/>
+                <group>
+                    <filter name="by_cashier" string="Cashier" domain="[]"
+                            context="{'group_by': 'user_id'}"/>
+                    <filter name="by_product" string="Product" domain="[]"
+                            context="{'group_by': 'product_id'}"/>
+                    <filter name="by_category" string="Category" domain="[]"
+                            context="{'group_by': 'categ_id'}"/>
+                    <filter name="by_hour" string="Hour of Day" domain="[]"
+                            context="{'group_by': 'hour_of_day'}"/>
+                    <filter name="by_weekday" string="Day of Week" domain="[]"
+                            context="{'group_by': 'day_of_week'}"/>
+                    <filter name="by_shop" string="Point of Sale" domain="[]"
+                            context="{'group_by': 'config_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_mna_pos_insight" model="ir.actions.act_window">
+        <field name="name">Sales Insight</field>
+        <field name="res_model">mna.pos.insight</field>
+        <field name="view_mode">pivot,graph,list</field>
+        <field name="context">{'search_default_by_cashier': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No POS sales yet</p>
+            <p>
+                Once a session has been closed, this answers the questions the
+                standard POS report does not: what each cashier actually earned you
+                after cost, what discounts cost, and which hours are worth staffing.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_mna_pos_peak_hours" model="ir.actions.act_window">
+        <field name="name">When Are We Busy?</field>
+        <field name="res_model">mna.pos.insight</field>
+        <field name="view_mode">graph,pivot,list</field>
+        <field name="context">{'search_default_by_hour': 1}</field>
+    </record>
+
+    <menuitem id="menu_mna_pos_insight"
+              name="Sales Insight"
+              parent="point_of_sale.menu_point_rep"
+              action="action_mna_pos_insight"
+              groups="point_of_sale.group_pos_manager"
+              sequence="55"/>
+
+    <menuitem id="menu_mna_pos_peak_hours"
+              name="When Are We Busy?"
+              parent="point_of_sale.menu_point_rep"
+              action="action_mna_pos_peak_hours"
+              groups="point_of_sale.group_pos_manager"
+              sequence="56"/>
+
+</odoo>
