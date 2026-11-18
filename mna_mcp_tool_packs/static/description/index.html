@@ -1,0 +1,64 @@
+<section style="font-family:Inter,Helvetica,Arial,sans-serif;margin:0 auto;padding:10px 16px;">
+  <div style="text-align:center;margin-bottom:26px;"><img src="banner.png" style="max-width:100%;border-radius:12px;" alt="MCP Tool Packs for Odoo"/></div>
+
+  <h2 style="color:#261a24;">MCP Tool Packs for Odoo</h2>
+  <p style="font-size:16px;line-height:1.6;color:#4a4a4a;">An extension for <strong>MCP Server for Odoo</strong>. The server on its own gives an AI client generic CRUD: search, read, create, update. That answers &ldquo;find invoice INV/2026/0042&rdquo; well, and answers &ldquo;what did we sell last month by salesperson&rdquo; badly, because the model has to page through hundreds of records and add them up itself. It will do that, and it will be wrong by a page.</p>
+  <p style="font-size:16px;line-height:1.6;color:#4a4a4a;">These eight tools aggregate inside PostgreSQL and return one short, exact answer. Free, and open source under LGPL-3.</p>
+
+  <h3 style="color:#261a24;margin-top:30px;">The eight tools</h3>
+  <div>
+      <div style="width:48%;min-width:260px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+        <h4 style="color:#714B67;margin:0 0 6px 0;">Sales</h4>
+        <p style="margin:0;color:#4a4a4a;"><code>sales_summary</code> totals for a period, grouped by salesperson, customer, product, team or month. <code>sales_pipeline</code> open quotations and orders with their age in days.</p>
+      </div>
+      <div style="width:48%;min-width:260px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+        <h4 style="color:#714B67;margin:0 0 6px 0;">Accounting</h4>
+        <p style="margin:0;color:#4a4a4a;"><code>aged_receivable</code> in the usual buckets. <code>unpaid_invoices</code> with days overdue. <code>revenue_by_period</code> per month or quarter, net of credit notes.</p>
+      </div>
+      <div style="width:48%;min-width:260px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+        <h4 style="color:#714B67;margin:0 0 6px 0;">Inventory</h4>
+        <p style="margin:0;color:#4a4a4a;"><code>stock_on_hand</code> per product, by location if you want. <code>low_stock</code> products at or below their reorder minimum, with incoming quantities.</p>
+      </div>
+      <div style="width:48%;min-width:260px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+        <h4 style="color:#714B67;margin:0 0 6px 0;">Purchase</h4>
+        <p style="margin:0;color:#4a4a4a;"><code>purchase_summary</code> confirmed purchases for a period, grouped by vendor, product, buyer or month.</p>
+      </div>
+  </div>
+
+  <h3 style="color:#261a24;margin-top:30px;">What the client sees</h3>
+  <p style="color:#4a4a4a;">A pack is hidden from <code>tools/list</code> when the app it reports on is not installed, so the client is never offered a tool that cannot work.</p>
+  <img src="01_tools.png" style="max-width:100%;border:1px solid #e6dfe4;border-radius:10px;" alt="tools/list showing the core tools and the pack tools"/>
+
+  <h3 style="color:#261a24;margin-top:30px;">One call, one exact answer</h3>
+  <p style="color:#4a4a4a;">Real responses from the endpoint. The totals come from PostgreSQL, so the model reads a figure rather than estimating one.</p>
+  <img src="03_answer.png" style="max-width:100%;border:1px solid #e6dfe4;border-radius:10px;" alt="Real sales_summary and aged_receivable responses"/>
+
+  <h3 style="color:#261a24;margin-top:30px;">Nothing here widens what MCP can reach</h3>
+  <div style="padding:18px;border:1px solid #e6dfe4;border-radius:10px;margin-bottom:14px;">
+    <h4 style="color:#714B67;margin:0 0 6px 0;">The same allowlist</h4>
+    <p style="margin:0;color:#4a4a4a;">Every pack tool goes through the allowlist the core module already uses. <code>aged_receivable</code> stays unavailable until you expose <code>account.move.line</code> for reading, and the refusal says exactly which model is missing.</p>
+  </div>
+  <div style="padding:18px;border:1px solid #e6dfe4;border-radius:10px;margin-bottom:14px;">
+    <h4 style="color:#714B67;margin:0 0 6px 0;">Read only, as the key's own user</h4>
+    <p style="margin:0;color:#4a4a4a;">No pack tool writes anything. All of them run with the permissions of the user who owns the API key, so record rules and multi-company rules apply exactly as they do in the interface. A salesperson's key cannot read accounting.</p>
+  </div>
+  <div style="padding:18px;border:1px solid #e6dfe4;border-radius:10px;">
+    <h4 style="color:#714B67;margin:0 0 6px 0;">Every call logged</h4>
+    <p style="margin:0;color:#4a4a4a;">Tool, arguments, user, key and result, successes and refusals alike.</p>
+  </div>
+
+  <h3 style="color:#261a24;margin-top:30px;">The call log</h3>
+  <p style="color:#4a4a4a;">Below: thirteen pack calls answered, and one call refused because the model was not on the allowlist.</p>
+  <img src="02_call_log.png" style="max-width:100%;border:1px solid #e6dfe4;border-radius:10px;" alt="MCP call log showing pack tool calls and one refusal"/>
+
+  <h3 style="color:#261a24;margin-top:30px;">Requirements</h3>
+  <table style="width:100%;border-collapse:collapse;">
+    <tr><td style="padding:8px;border-bottom:1px solid #e6dfe4;width:30%;color:#714B67;"><strong>Odoo</strong></td><td style="padding:8px;border-bottom:1px solid #e6dfe4;color:#4a4a4a;">18.0 and 19.0, Community or Enterprise</td></tr>
+    <tr><td style="padding:8px;border-bottom:1px solid #e6dfe4;color:#714B67;"><strong>Depends on</strong></td><td style="padding:8px;border-bottom:1px solid #e6dfe4;color:#4a4a4a;">MCP Server for Odoo, which is also free</td></tr>
+    <tr><td style="padding:8px;border-bottom:1px solid #e6dfe4;color:#714B67;"><strong>Licence</strong></td><td style="padding:8px;border-bottom:1px solid #e6dfe4;color:#4a4a4a;">LGPL-3</td></tr>
+    <tr><td style="padding:8px;color:#714B67;"><strong>Tested</strong></td><td style="padding:8px;color:#4a4a4a;">12 automated tests driven through the real /mcp endpoint, including a summary checked against a hand count and credit notes netted out of revenue</td></tr>
+  </table>
+
+  <h3 style="color:#261a24;margin-top:30px;">Support</h3>
+  <p style="color:#4a4a4a;">Written and maintained by Mohammad Najjarine, Odoo consultant. Questions and bug reports are answered.</p>
+</section>
