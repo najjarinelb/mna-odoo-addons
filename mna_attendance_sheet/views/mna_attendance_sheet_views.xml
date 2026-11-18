@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_mna_attendance_sheet_form" model="ir.ui.view">
+        <field name="name">mna.attendance.sheet.form</field>
+        <field name="model">mna.attendance.sheet</field>
+        <field name="arch" type="xml">
+            <form string="Attendance Sheet">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="grace_minutes"/>
+                    </group>
+                    <group>
+                        <field name="department_id"/>
+                        <field name="employee_ids" widget="many2many_tags"/>
+                        <field name="skip_days_off"/>
+                    </group>
+                </group>
+                <notebook invisible="not summary_ids">
+                    <page string="Per employee" name="summary">
+                        <field name="summary_ids" readonly="1">
+                            <list string="Summary" create="false" delete="false">
+                                <field name="employee_id"/>
+                                <field name="department_id" optional="show"/>
+                                <field name="working_days" sum="Days"/>
+                                <field name="days_present" sum="Present"/>
+                                <field name="days_absent" sum="Absent"/>
+                                <field name="days_late" sum="Late"/>
+                                <field name="days_early" sum="Left early"/>
+                                <field name="days_open" sum="No check out" optional="show"/>
+                                <field name="expected_hours" widget="float_time" sum="Expected"/>
+                                <field name="worked_hours" widget="float_time" sum="Worked"/>
+                                <field name="difference_hours" widget="float_time" sum="Difference"/>
+                                <field name="late_minutes" sum="Late (min)"/>
+                                <field name="early_minutes" sum="Early (min)" optional="show"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Day by day" name="detail">
+                        <field name="line_ids" readonly="1">
+                            <list string="Detail" create="false" delete="false"
+                                  decoration-danger="status == 'absent'"
+                                  decoration-warning="status in ('late', 'early', 'late_early', 'open')">
+                                <field name="employee_id"/>
+                                <field name="date"/>
+                                <field name="planned_from" widget="float_time" optional="show"/>
+                                <field name="planned_to" widget="float_time" optional="show"/>
+                                <field name="check_in" widget="float_time"/>
+                                <field name="check_out" widget="float_time"/>
+                                <field name="expected_hours" widget="float_time" sum="Expected"/>
+                                <field name="worked_hours" widget="float_time" sum="Worked"/>
+                                <field name="difference_hours" widget="float_time" sum="Difference"/>
+                                <field name="late_minutes" sum="Late (min)"/>
+                                <field name="early_minutes" sum="Early (min)"/>
+                                <field name="status"/>
+                                <field name="department_id" column_invisible="1"/>
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+                <footer>
+                    <button name="action_compute" string="Compute" type="object" class="btn-primary"/>
+                    <button name="action_open_lines" string="Open detail" type="object"
+                            class="btn-secondary" invisible="not line_ids"/>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_mna_attendance_sheet_line_list" model="ir.ui.view">
+        <field name="name">mna.attendance.sheet.line.list</field>
+        <field name="model">mna.attendance.sheet.line</field>
+        <field name="arch" type="xml">
+            <list string="Attendance Detail" create="false" delete="false"
+                  decoration-danger="status == 'absent'"
+                  decoration-warning="status in ('late', 'early', 'late_early', 'open')">
+                <field name="employee_id"/>
+                <field name="department_id" optional="show"/>
+                <field name="date"/>
+                <field name="planned_from" widget="float_time"/>
+                <field name="planned_to" widget="float_time"/>
+                <field name="check_in" widget="float_time"/>
+                <field name="check_out" widget="float_time"/>
+                <field name="expected_hours" widget="float_time" sum="Expected"/>
+                <field name="worked_hours" widget="float_time" sum="Worked"/>
+                <field name="difference_hours" widget="float_time" sum="Difference"/>
+                <field name="late_minutes" sum="Late (min)"/>
+                <field name="early_minutes" sum="Early (min)"/>
+                <field name="status"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_mna_attendance_sheet_line_pivot" model="ir.ui.view">
+        <field name="name">mna.attendance.sheet.line.pivot</field>
+        <field name="model">mna.attendance.sheet.line</field>
+        <field name="arch" type="xml">
+            <pivot string="Attendance Detail">
+                <field name="employee_id" type="row"/>
+                <field name="worked_hours" type="measure"/>
+                <field name="late_minutes" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_mna_attendance_sheet_line_search" model="ir.ui.view">
+        <field name="name">mna.attendance.sheet.line.search</field>
+        <field name="model">mna.attendance.sheet.line</field>
+        <field name="arch" type="xml">
+            <search string="Attendance Detail">
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <filter name="filter_late" string="Late" domain="[('status', 'in', ('late', 'late_early'))]"/>
+                <filter name="filter_early" string="Left early" domain="[('status', 'in', ('early', 'late_early'))]"/>
+                <filter name="filter_absent" string="Absent" domain="[('status', '=', 'absent')]"/>
+                <filter name="filter_open" string="Never checked out" domain="[('status', '=', 'open')]"/>
+                <group>
+                    <filter name="group_employee" string="Employee" context="{'group_by': 'employee_id'}"/>
+                    <filter name="group_department" string="Department" context="{'group_by': 'department_id'}"/>
+                    <filter name="group_status" string="Status" context="{'group_by': 'status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_mna_attendance_sheet" model="ir.actions.act_window">
+        <field name="name">Attendance Sheet</field>
+        <field name="res_model">mna.attendance.sheet</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_mna_attendance_sheet"
+              name="Attendance Sheet"
+              parent="hr_attendance.menu_hr_attendance_root"
+              action="action_mna_attendance_sheet"
+              sequence="25"/>
+
+</odoo>

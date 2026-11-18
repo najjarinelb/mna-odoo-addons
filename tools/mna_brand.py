@@ -178,6 +178,22 @@ MODULES = [
      "POS Multi-Currency Payments",
      "Take payment in a second currency at a rate you control"),
 
+    ("mna-odoo-addons", "mna_attendance_sheet", "ATT",
+     "Monthly Attendance Sheet",
+     "Who came late, who left early, who did not come at all"),
+
+    ("mna-odoo-addons", "mna_leave_balance", "LVB",
+     "Time Off Balance & Ledger",
+     "Allocated, taken, pending and remaining, with every movement behind it"),
+
+    ("mna-odoo-apps", "mna_attendance_regularize", "FIX",
+     "Attendance Correction Requests",
+     "Missing and wrong punches fixed through an approval, not a silent edit"),
+
+    ("mna-odoo-apps", "mna_timeoff_approval", "LVL",
+     "Multi-Level Time Off Approval",
+     "Approval levels chosen by how long the request is"),
+
     ("mna-odoo-apps", "mna_fx_revaluation", "FXR",
      "Multi-Currency Revaluation",
      "Unrealised FX gain and loss, posted and reversed"),
@@ -209,7 +225,11 @@ MODULES = [
 
 
 def main():
-    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    # The MODULES entries are repo relative, so the root is the directory
+    # that holds both repos as siblings, which is the grandparent of this
+    # script's repo rather than the repo itself.
+    repo = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    root = os.path.dirname(repo)
     only = os.environ.get("MNA_ONLY", "").split(",") if os.environ.get("MNA_ONLY") else None
     made = 0
     for repo, module, code, title, subtitle in MODULES:

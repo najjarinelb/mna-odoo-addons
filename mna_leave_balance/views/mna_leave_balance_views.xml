@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_mna_leave_balance_form" model="ir.ui.view">
+        <field name="name">mna.leave.balance.form</field>
+        <field name="model">mna.leave.balance</field>
+        <field name="arch" type="xml">
+            <form string="Time Off Balance">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="holiday_status_ids" widget="many2many_tags"/>
+                    </group>
+                    <group>
+                        <field name="department_id"/>
+                        <field name="employee_ids" widget="many2many_tags"/>
+                        <field name="include_pending"/>
+                        <field name="hide_empty"/>
+                    </group>
+                </group>
+                <notebook invisible="not line_ids">
+                    <page string="Balance" name="balance">
+                        <field name="line_ids" readonly="1">
+                            <list string="Balance" create="false" delete="false"
+                                  decoration-danger="limited and remaining_days &lt; 0"
+                                  decoration-muted="not limited">
+                                <field name="employee_id"/>
+                                <field name="department_id" optional="show"/>
+                                <field name="holiday_status_id"/>
+                                <field name="allocated_days" sum="Allocated"/>
+                                <field name="taken_days" sum="Taken"/>
+                                <field name="pending_days" sum="Awaiting approval"/>
+                                <field name="remaining_days" sum="Remaining"/>
+                                <field name="limited" string="Allocated type" optional="hide"/>
+                                <field name="allocated_hours" sum="Allocated (h)" optional="hide"/>
+                                <field name="taken_hours" sum="Taken (h)" optional="hide"/>
+                                <field name="pending_hours" sum="Awaiting (h)" optional="hide"/>
+                                <field name="remaining_hours" sum="Remaining (h)" optional="hide"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Movements" name="ledger">
+                        <field name="ledger_ids" readonly="1">
+                            <list string="Movements" create="false" delete="false"
+                                  decoration-muted="kind == 'pending'">
+                                <field name="employee_id"/>
+                                <field name="holiday_status_id"/>
+                                <field name="date"/>
+                                <field name="kind"/>
+                                <field name="name"/>
+                                <field name="days" sum="Days"/>
+                                <field name="hours" sum="Hours" optional="hide"/>
+                                <button name="action_open_record" type="object" icon="fa-external-link"
+                                        title="Open the record behind this movement"/>
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+                <footer>
+                    <button name="action_compute" string="Compute" type="object" class="btn-primary"/>
+                    <button name="action_open_ledger" string="Open movements" type="object"
+                            class="btn-secondary" invisible="not ledger_ids"/>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_mna_leave_balance_ledger_list" model="ir.ui.view">
+        <field name="name">mna.leave.balance.ledger.list</field>
+        <field name="model">mna.leave.balance.ledger</field>
+        <field name="arch" type="xml">
+            <list string="Time Off Movements" create="false" delete="false"
+                  decoration-muted="kind == 'pending'">
+                <field name="employee_id"/>
+                <field name="holiday_status_id"/>
+                <field name="date"/>
+                <field name="kind"/>
+                <field name="name"/>
+                <field name="days" sum="Days"/>
+                <field name="hours" sum="Hours"/>
+                <button name="action_open_record" type="object" icon="fa-external-link"
+                        title="Open the record behind this movement"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_mna_leave_balance_ledger_search" model="ir.ui.view">
+        <field name="name">mna.leave.balance.ledger.search</field>
+        <field name="model">mna.leave.balance.ledger</field>
+        <field name="arch" type="xml">
+            <search string="Time Off Movements">
+                <field name="employee_id"/>
+                <field name="holiday_status_id"/>
+                <filter name="filter_allocation" string="Allocations" domain="[('kind', '=', 'allocation')]"/>
+                <filter name="filter_taken" string="Taken" domain="[('kind', '=', 'taken')]"/>
+                <filter name="filter_pending" string="Awaiting approval" domain="[('kind', '=', 'pending')]"/>
+                <group>
+                    <filter name="group_employee" string="Employee" context="{'group_by': 'employee_id'}"/>
+                    <filter name="group_type" string="Time Off Type" context="{'group_by': 'holiday_status_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_mna_leave_balance" model="ir.actions.act_window">
+        <field name="name">Balance Report</field>
+        <field name="res_model">mna.leave.balance</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_mna_leave_balance"
+              name="Balance Report"
+              parent="hr_holidays.menu_hr_holidays_report"
+              action="action_mna_leave_balance"
+              sequence="25"/>
+
+</odoo>

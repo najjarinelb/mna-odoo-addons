@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mna_attendance_sheet,mna.attendance.sheet,model_mna_attendance_sheet,hr_attendance.group_hr_attendance_officer,1,1,1,1
+access_mna_attendance_sheet_line,mna.attendance.sheet.line,model_mna_attendance_sheet_line,hr_attendance.group_hr_attendance_officer,1,1,1,1
+access_mna_attendance_sheet_summary,mna.attendance.sheet.summary,model_mna_attendance_sheet_summary,hr_attendance.group_hr_attendance_officer,1,1,1,1
