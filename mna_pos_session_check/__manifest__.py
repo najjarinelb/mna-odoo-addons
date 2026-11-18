@@ -48,6 +48,7 @@ Free and open source, LGPL-3.
     ],
     "images": [
         "static/description/banner.png",
+        "static/description/01_check.png",
     ],
     "installable": True,
     "application": False,

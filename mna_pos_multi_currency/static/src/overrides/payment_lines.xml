@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="mna_pos_multi_currency.PaymentLineForeign"
+       t-inherit="point_of_sale.PaymentScreenPaymentLines"
+       t-inherit-mode="extension">
+        <xpath expr="//span[hasclass('payment-name')]" position="after">
+            <small class="mna-foreign-amount text-muted d-block"
+                   t-if="line.mnaForeignLabel()">
+                <t t-esc="line.mnaForeignLabel()"/>
+            </small>
+        </xpath>
+    </t>
+
+</templates>

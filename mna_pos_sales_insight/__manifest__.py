@@ -42,7 +42,11 @@ Free and open source, LGPL-3.
         "security/ir.model.access.csv",
         "views/mna_pos_insight_views.xml",
     ],
-    "images": ["static/description/banner.png"],
+    "images": [
+        "static/description/banner.png",
+        "static/description/01_insight.png",
+        "static/description/02_busy.png",
+    ],
     "installable": True,
     "application": False,
 }
