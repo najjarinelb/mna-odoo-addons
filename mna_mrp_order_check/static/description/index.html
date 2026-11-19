@@ -1,0 +1,29 @@
+<section style="font-family:Inter,Helvetica,Arial,sans-serif;margin:0 auto;padding:10px 16px;">
+<div style="text-align:center;margin-bottom:26px;"><img src="banner.png" style="max-width:100%;border-radius:12px;" alt="Manufacturing Order Check"/></div>
+<h2 style="color:#261a24;">Manufacturing Order Check</h2>
+<p style="font-size:16px;line-height:1.6;color:#4a4a4a;">A manufacturing order can close in a state nobody notices. It produces 90 when it was told to produce 100 and the shortfall never reaches anyone. A component is on the order and never consumed, so stock stays high and the cost of what you made is understated. A work centre logs no time at all, so every hour of labour in that order is free.</p>
+<p style="font-size:16px;line-height:1.6;color:#4a4a4a;">None of this throws an error. It shows up weeks later as stock that will not reconcile and a margin nobody believes. This is one screen that goes looking for it.</p>
+<p style="font-size:16px;line-height:1.6;color:#4a4a4a;">Free and open source under LGPL-3.</p>
+<h3 style="color:#261a24;margin-top:30px;">What it does</h3><div>
+<div style="width:48%;min-width:240px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;"><h4 style="color:#714B67;margin:0 0 6px 0;">Quantity that does not match</h4><p style="margin:0;color:#4a4a4a;">Orders that produced more or less than they were told to, with both figures and the difference.</p></div>
+<div style="width:48%;min-width:240px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;"><h4 style="color:#714B67;margin:0 0 6px 0;">Components never consumed</h4><p style="margin:0;color:#4a4a4a;">Planned on the order and consumed at zero, which overstates stock and understates what you made.</p></div>
+<div style="width:48%;min-width:240px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;"><h4 style="color:#714B67;margin:0 0 6px 0;">Consumed well over plan</h4><p style="margin:0;color:#4a4a4a;">Past a tolerance you set, so normal scrap stays out of the report.</p></div>
+<div style="width:48%;min-width:240px;display:inline-block;vertical-align:top;margin:0 1% 18px 0;padding:18px;border:1px solid #e6dfe4;border-radius:10px;"><h4 style="color:#714B67;margin:0 0 6px 0;">Costs and time that are missing</h4><p style="margin:0;color:#4a4a4a;">Components with no cost recorded, and work orders that logged no time at all.</p></div>
+</div>
+<h3 style="color:#261a24;margin-top:30px;">Quiet when there is nothing wrong</h3>
+<p style="color:#4a4a4a;">Thirteen finished orders here, four findings, and the healthy nine are not mentioned. A check that fires on good data gets switched off within a week, so every rule is written to stay silent on a clean order.</p>
+<img src="01_findings.png" style="max-width:100%;border:1px solid #e6dfe4;border-radius:10px;" alt="Manufacturing order check findings list"/>
+<h3 style="color:#261a24;margin-top:30px;">Each rule can be switched off</h3>
+<p style="color:#4a4a4a;">Run the whole set or just the one you are chasing, over any period, with the over-consumption tolerance in your hands.</p>
+<img src="02_setup.png" style="max-width:100%;border:1px solid #e6dfe4;border-radius:10px;" alt="The manufacturing order check setup form"/>
+<h3 style="color:#261a24;margin-top:30px;">Done carefully</h3>
+<div style="padding:18px;border:1px solid #e6dfe4;border-radius:10px;margin-bottom:14px;"><h4 style="color:#714B67;margin:0 0 6px 0;">The tolerance is real</h4><p style="margin:0;color:#4a4a4a;">Some scrap is normal. A component consumed over plan by less than the tolerance is not reported at all, and a bill of materials set to flexible consumption is left alone entirely, because that setting was chosen on purpose and arguing with it is noise.</p></div>
+<div style="padding:18px;border:1px solid #e6dfe4;border-radius:10px;margin-bottom:14px;"><h4 style="color:#714B67;margin:0 0 6px 0;">The same problem is not counted twice</h4><p style="margin:0;color:#4a4a4a;">A component consumed at zero is reported once, as never consumed. It is not also reported as having an unusual quantity.</p></div>
+<div style="padding:18px;border:1px solid #e6dfe4;border-radius:10px;margin-bottom:14px;"><h4 style="color:#714B67;margin:0 0 6px 0;">Both numbers, every time</h4><p style="margin:0;color:#4a4a4a;">Each finding carries the planned figure and the actual one, so you can tell at a glance whether it is worth your morning.</p></div>
+<h3 style="color:#261a24;margin-top:30px;">Requirements</h3><table style="width:100%;border-collapse:collapse;">
+<tr><td style="padding:8px;border-bottom:1px solid #e6dfe4;width:30%;color:#714B67;"><strong>Odoo</strong></td><td style="padding:8px;border-bottom:1px solid #e6dfe4;color:#4a4a4a;">18.0 and 19.0, Community or Enterprise</td></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #e6dfe4;width:30%;color:#714B67;"><strong>Depends on</strong></td><td style="padding:8px;border-bottom:1px solid #e6dfe4;color:#4a4a4a;">Manufacturing only</td></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #e6dfe4;width:30%;color:#714B67;"><strong>Licence</strong></td><td style="padding:8px;border-bottom:1px solid #e6dfe4;color:#4a4a4a;">LGPL-3, free</td></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #e6dfe4;width:30%;color:#714B67;"><strong>Tested</strong></td><td style="padding:8px;border-bottom:1px solid #e6dfe4;color:#4a4a4a;">14 automated tests on both 18.0 and 19.0, including a clean order that must produce no findings at all</td></tr>
+</table>
+<h3 style="color:#261a24;margin-top:30px;">Support</h3><p style="color:#4a4a4a;">Written and maintained by Mohammad Najjarine, Odoo consultant. Questions and bug reports are answered.</p></section>

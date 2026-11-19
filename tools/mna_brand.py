@@ -221,6 +221,22 @@ MODULES = [
     ("mna-odoo-apps", "mna_purchase_report", "PO",
      "Professional Purchase Order Report",
      "A purchase order PDF you are happy to send out"),
+
+    ("mna-odoo-addons", "mna_bom_where_used", "WHR",
+     "BoM Where Used",
+     "Every product you would break by changing this component"),
+
+    ("mna-odoo-addons", "mna_mrp_order_check", "MOC",
+     "Manufacturing Order Check",
+     "The orders that closed short, consumed nothing, or cost nothing"),
+
+    ("mna-odoo-apps", "mna_bom_cost_rollup", "ROL",
+     "Multi-Level BoM Cost Rollup",
+     "What it really costs to build, rolled up through every level"),
+
+    ("mna-odoo-apps", "mna_mrp_cost_variance", "VAR",
+     "Manufacturing Cost Variance",
+     "Used too much, or paid too much: two different problems"),
 ]
 
 

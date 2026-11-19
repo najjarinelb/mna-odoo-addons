@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_mna_mrp_order_check_form" model="ir.ui.view">
+        <field name="name">mna.mrp.order.check.form</field>
+        <field name="model">mna.mrp.order.check</field>
+        <field name="arch" type="xml">
+            <form string="Manufacturing Order Check">
+                <sheet>
+                    <group>
+                        <group string="Period">
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="company_id"
+                                   groups="base.group_multi_company"/>
+                            <field name="over_consumption_tolerance"/>
+                        </group>
+                        <group string="Checks to run">
+                            <field name="check_qty_mismatch"/>
+                            <field name="check_not_consumed"/>
+                            <field name="check_over_consumed"/>
+                            <field name="check_zero_cost"/>
+                            <field name="check_no_duration"/>
+                            <field name="check_no_output"/>
+                        </group>
+                    </group>
+                    <field name="has_run" invisible="1"/>
+                    <field name="order_count" invisible="1"/>
+                    <div invisible="not has_run" class="alert alert-info"
+                         role="alert">
+                        <field name="note" nolabel="1" readonly="1"/>
+                    </div>
+                    <field name="line_ids" invisible="not has_run"
+                           readonly="1">
+                        <list string="Findings" create="false"
+                              delete="false"
+                              decoration-danger="severity == 'high'"
+                              decoration-warning="severity == 'medium'">
+                            <field name="severity"/>
+                            <field name="production_id"/>
+                            <field name="date_finished" optional="hide"/>
+                            <field name="check"/>
+                            <field name="product_id" optional="show"/>
+                            <field name="planned_qty"/>
+                            <field name="actual_qty"/>
+                            <field name="difference" optional="show"/>
+                            <field name="message"/>
+                            <button name="action_open_production"
+                                    type="object" icon="fa-external-link"
+                                    title="Open the manufacturing order"/>
+                        </list>
+                    </field>
+                </sheet>
+                <footer>
+                    <button name="action_run" type="object"
+                            string="Run Check" class="btn-primary"/>
+                    <button string="Close" class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_mna_mrp_order_check" model="ir.actions.act_window">
+        <field name="name">Manufacturing Order Check</field>
+        <field name="res_model">mna.mrp.order.check</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_mna_mrp_order_check"
+              name="Manufacturing Order Check"
+              parent="mrp.menu_mrp_reporting"
+              action="action_mna_mrp_order_check"
+              sequence="90"/>
+
+</odoo>

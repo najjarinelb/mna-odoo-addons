@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mna_mrp_order_check,mna.mrp.order.check,model_mna_mrp_order_check,mrp.group_mrp_user,1,1,1,1
+access_mna_mrp_order_check_line,mna.mrp.order.check.line,model_mna_mrp_order_check_line,mrp.group_mrp_user,1,1,1,1
