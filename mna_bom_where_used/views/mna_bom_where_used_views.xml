@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_mna_bom_where_used_form" model="ir.ui.view">
+        <field name="name">mna.bom.where.used.form</field>
+        <field name="model">mna.bom.where.used</field>
+        <field name="arch" type="xml">
+            <form string="BoM Where Used">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="product_id"
+                                   options="{'no_create': True}"/>
+                            <field name="company_id"
+                                   groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="max_depth"/>
+                            <field name="include_inactive"/>
+                            <field name="has_run" invisible="1"/>
+                            <field name="result_count" invisible="1"/>
+                        </group>
+                    </group>
+                    <div invisible="not has_run" class="alert alert-info"
+                         role="alert">
+                        <field name="note" nolabel="1" readonly="1"/>
+                    </div>
+                    <field name="line_ids" invisible="not has_run"
+                           readonly="1">
+                        <list string="Where Used" create="false"
+                              delete="false" default_order="level">
+                            <field name="level"/>
+                            <field name="kind"/>
+                            <field name="parent_product_id"/>
+                            <field name="bom_id" optional="hide"/>
+                            <field name="bom_type" optional="show"/>
+                            <field name="component_product_id"
+                                   optional="hide"/>
+                            <field name="line_qty" optional="hide"/>
+                            <field name="qty_per_parent"/>
+                            <field name="path" optional="show"/>
+                            <field name="message" optional="show"/>
+                        </list>
+                    </field>
+                </sheet>
+                <footer>
+                    <button name="action_search" type="object"
+                            string="Search" class="btn-primary"/>
+                    <button string="Close" class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_mna_bom_where_used" model="ir.actions.act_window">
+        <field name="name">BoM Where Used</field>
+        <field name="res_model">mna.bom.where.used</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_mna_bom_where_used"
+              name="BoM Where Used"
+              parent="mrp.menu_mrp_bom"
+              action="action_mna_bom_where_used"
+              sequence="30"/>
+
+</odoo>
