@@ -144,6 +144,9 @@ def make_icon(path, code):
 
 MODULES = [
     # repo, module, code, title, subtitle
+    ("mna-odoo-apps", "mna_access_governance", "AG", "Access Governance",
+     "Why this user can do that, and every security change since"),
+
     ("mna-odoo-addons", "mna_health_check", "HC", "Odoo Health Check",
      "One screen for the things that quietly break"),
 
