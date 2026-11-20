@@ -174,6 +174,22 @@ MODULES = [
      "POS X/Z Report & Daily Closing",
      "The end of day report Odoo's Point of Sale does not have"),
 
+    ("mna-odoo-addons", "mna_sale_order_check", "SOC",
+     "Sales Order Check",
+     "Sold under cost, discounted past the limit, delivered and never invoiced"),
+
+    ("mna-odoo-addons", "mna_quotation_aging", "QA",
+     "Quotation Pipeline Aging",
+     "How old the open quotations are, and who wins"),
+
+    ("mna-odoo-apps", "mna_sale_discount_approval", "DISC",
+     "Sales Discount Approval",
+     "No discount goes out of the door without someone allowing it"),
+
+    ("mna-odoo-apps", "mna_sale_credit_hold", "CRED",
+     "Sales Credit Hold",
+     "Actually stop an order that takes a customer past their limit"),
+
     ("mna-odoo-addons", "mna_pos_multi_currency", "FX2",
      "POS Multi-Currency Payments",
      "Take payment in a second currency at a rate you control"),
