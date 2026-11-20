@@ -52,8 +52,8 @@ installed, which is the cost as at the order rather than today's. Without
 it the product's current cost is used, converted into the unit of measure
 the line was sold in.
 
-Runs on Odoo 18 and 19 from one source. Community only, no Enterprise
-dependency.
+Runs on Odoo 18 and 19 from one source, on Community and Enterprise
+alike. It needs no Enterprise module to work.
 
 Free and open source, LGPL-3.
 """,

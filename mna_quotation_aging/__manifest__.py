@@ -42,8 +42,8 @@ can be checked rather than argued about.
 
 Read only. It adds no fields to your sales orders and changes nothing.
 
-Runs on Odoo 18 and 19 from one source. Community only, no Enterprise
-dependency.
+Runs on Odoo 18 and 19 from one source, on Community and Enterprise
+alike. It needs no Enterprise module to work.
 
 Free and open source, LGPL-3.
 """,
