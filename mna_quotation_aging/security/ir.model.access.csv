@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mna_quotation_aging,mna.quotation.aging,model_mna_quotation_aging,sales_team.group_sale_salesman,1,1,1,1
+access_mna_quotation_aging_line,mna.quotation.aging.line,model_mna_quotation_aging_line,sales_team.group_sale_salesman,1,1,1,1

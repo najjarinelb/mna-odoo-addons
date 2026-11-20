@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_mna_sale_order_check_form" model="ir.ui.view">
+        <field name="name">mna.sale.order.check.form</field>
+        <field name="model">mna.sale.order.check</field>
+        <field name="arch" type="xml">
+            <form string="Sales Order Check">
+                <sheet>
+                    <group>
+                        <group string="Period">
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="company_id"
+                                   groups="base.group_multi_company"/>
+                            <field name="discount_limit"/>
+                            <field name="invoice_grace_days"/>
+                        </group>
+                        <group string="Checks to run">
+                            <field name="check_below_cost"/>
+                            <field name="check_discount_high"/>
+                            <field name="check_zero_price"/>
+                            <field name="check_delivered_not_invoiced"/>
+                            <field name="check_over_invoiced"/>
+                            <field name="check_expired_open"/>
+                            <field name="check_no_salesperson"/>
+                        </group>
+                    </group>
+                    <field name="has_run" invisible="1"/>
+                    <field name="order_count" invisible="1"/>
+                    <div invisible="not has_run" class="alert alert-info"
+                         role="alert">
+                        <field name="note" nolabel="1" readonly="1"/>
+                    </div>
+                    <field name="line_ids" invisible="not has_run"
+                           readonly="1">
+                        <list string="Findings" create="false"
+                              delete="false"
+                              decoration-danger="severity == 'high'"
+                              decoration-warning="severity == 'medium'">
+                            <field name="severity"/>
+                            <field name="order_id"/>
+                            <field name="partner_id" optional="show"/>
+                            <field name="date_order" optional="hide"/>
+                            <field name="salesperson_id" optional="hide"/>
+                            <field name="check"/>
+                            <field name="product_id" optional="show"/>
+                            <field name="expected"/>
+                            <field name="actual"/>
+                            <field name="difference" optional="hide"/>
+                            <field name="message"/>
+                            <button name="action_open_order"
+                                    type="object" icon="fa-external-link"
+                                    title="Open the sales order"/>
+                        </list>
+                    </field>
+                </sheet>
+                <footer>
+                    <button name="action_run" type="object"
+                            string="Run Check" class="btn-primary"/>
+                    <button string="Close" class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_mna_sale_order_check" model="ir.actions.act_window">
+        <field name="name">Sales Order Check</field>
+        <field name="res_model">mna.sale.order.check</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_mna_sale_order_check"
+              name="Sales Order Check"
+              parent="sale.menu_sale_report"
+              action="action_mna_sale_order_check"
+              sequence="90"/>
+
+</odoo>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_mna_quotation_aging_form" model="ir.ui.view">
+        <field name="name">mna.quotation.aging.form</field>
+        <field name="model">mna.quotation.aging</field>
+        <field name="arch" type="xml">
+            <form string="Quotation Pipeline Aging">
+                <sheet>
+                    <group>
+                        <group string="Period">
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="company_id"
+                                   groups="base.group_multi_company"/>
+                            <field name="only_my_team"/>
+                        </group>
+                        <group string="Totals" invisible="not has_run">
+                            <field name="currency_id" invisible="1"/>
+                            <field name="total_open"/>
+                            <field name="total_open_amount"/>
+                            <field name="total_expired"/>
+                            <field name="total_won"/>
+                            <field name="total_lost"/>
+                            <!-- No percentage widget: the field already
+                                 holds a percentage, and the widget would
+                                 multiply it by a hundred a second time. -->
+                            <field name="total_win_rate"/>
+                        </group>
+                    </group>
+                    <field name="has_run" invisible="1"/>
+                    <div invisible="not has_run" class="alert alert-info"
+                         role="alert">
+                        <field name="note" nolabel="1" readonly="1"/>
+                    </div>
+                    <field name="line_ids" invisible="not has_run"
+                           readonly="1">
+                        <list string="Salespeople" create="false"
+                              delete="false">
+                            <field name="salesperson_id"/>
+                            <field name="open_count" sum="Open"/>
+                            <field name="open_amount" sum="Open Value"/>
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="b_0_7" sum="0-7"/>
+                            <field name="b_8_14" sum="8-14"/>
+                            <field name="b_15_30" sum="15-30"/>
+                            <field name="b_31_60" sum="31-60"/>
+                            <field name="b_60_plus" sum="60+"/>
+                            <field name="oldest_days" optional="show"/>
+                            <field name="expired_count" sum="Expired"
+                                   optional="show"/>
+                            <field name="no_activity_count"
+                                   sum="No Next Step" optional="show"/>
+                            <field name="won_count" sum="Won"/>
+                            <field name="lost_count" sum="Lost"/>
+                            <field name="win_rate" optional="show"/>
+                            <button name="action_open_quotations"
+                                    type="object" icon="fa-external-link"
+                                    title="Open these quotations"/>
+                        </list>
+                    </field>
+                </sheet>
+                <footer>
+                    <button name="action_run" type="object"
+                            string="Run Report" class="btn-primary"/>
+                    <button string="Close" class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_mna_quotation_aging" model="ir.actions.act_window">
+        <field name="name">Quotation Pipeline Aging</field>
+        <field name="res_model">mna.quotation.aging</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_mna_quotation_aging"
+              name="Quotation Pipeline Aging"
+              parent="sale.menu_sale_report"
+              action="action_mna_quotation_aging"
+              sequence="91"/>
+
+</odoo>
