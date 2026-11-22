@@ -31,7 +31,7 @@ Read-only. It changes nothing, posts nothing, and renumbers nothing.
 """,
     "author": "Mohammad Najjarine",
     "maintainer": "Mohammad Najjarine",
-    "website": "https://github.com/najjarinelb/mna-odoo-addons",
+    "website": "https://wa.me/96171835279",
     "license": "LGPL-3",
     "depends": ["account"],
     "data": [

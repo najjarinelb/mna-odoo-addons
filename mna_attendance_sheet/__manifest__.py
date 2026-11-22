@@ -42,7 +42,7 @@ LGPL-3.
 """,
     "author": "Mohammad Najjarine",
     "maintainer": "Mohammad Najjarine",
-    "website": "https://github.com/najjarinelb",
+    "website": "https://wa.me/96171835279",
     "license": "LGPL-3",
     "depends": ["hr_attendance"],
     "data": [
