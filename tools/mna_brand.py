@@ -150,6 +150,10 @@ MODULES = [
     ("mna-odoo-apps", "mna_access_governance", "AG", "Access Governance",
      "Why this user can do that, and every security change since"),
 
+    ("mna-odoo-apps", "mna_employee_finance", "EF",
+     "Employee Loans and End of Service",
+     "Lend it, provide for it, and settle it on the day they leave"),
+
     ("mna-odoo-addons", "mna_health_check", "HC", "Odoo Health Check",
      "One screen for the things that quietly break"),
 
