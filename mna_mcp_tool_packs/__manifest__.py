@@ -55,7 +55,7 @@ installed, so the client is never offered a tool that cannot work.
 """,
     "author": "Mohammad Najjarine",
     "maintainer": "Mohammad Najjarine",
-    "website": "https://github.com/najjarinelb/mna-odoo-addons",
+    "website": "https://wa.me/96171835279",
     "license": "LGPL-3",
     "depends": ["mna_mcp_server"],
     "data": [],

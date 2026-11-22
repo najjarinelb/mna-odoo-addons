@@ -47,7 +47,7 @@ Each company chooses its own provider and schedule, and rates are
 written against that company's own currency.
 """,
     "author": "Mohammad Najjarine",
-    "website": "https://github.com/najjarinelb/mna-odoo-addons",
+    "website": "https://wa.me/96171835279",
     "license": "LGPL-3",
     "category": "Accounting/Accounting",
     "depends": ["base", "account"],
