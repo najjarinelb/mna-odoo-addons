@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_mna_pos_session_currency_user,mna.pos.session.currency user,model_mna_pos_session_currency,point_of_sale.group_pos_user,1,1,1,0
-access_mna_pos_session_currency_manager,mna.pos.session.currency manager,model_mna_pos_session_currency,point_of_sale.group_pos_manager,1,1,1,1
