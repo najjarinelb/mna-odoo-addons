@@ -176,7 +176,7 @@ MODULES = [
      "POS Sales Insight",
      "Margin, what discounts cost, and when the shop is actually busy"),
 
-    ("mna-odoo-addons", "mna_pos_z_report", "Z",
+    ("mna-odoo-apps", "mna_pos_z_report", "Z",
      "POS X/Z Report & Daily Closing",
      "The end of day report Odoo's Point of Sale does not have"),
 
@@ -196,7 +196,7 @@ MODULES = [
      "Sales Credit Hold",
      "Actually stop an order that takes a customer past their limit"),
 
-    ("mna-odoo-addons", "mna_pos_multi_currency", "FX2",
+    ("mna-odoo-apps", "mna_pos_multi_currency", "FX2",
      "POS Multi-Currency Payments",
      "Take payment in a second currency at a rate you control"),
 
