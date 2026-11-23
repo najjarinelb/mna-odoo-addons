@@ -144,6 +144,9 @@ def make_icon(path, code):
 
 MODULES = [
     # repo, module, code, title, subtitle
+    ("mna-odoo-apps", "mna_quality_control", "QC", "Quality Control",
+     "Inspection, sampling plans and corrective action, on Community too"),
+
     ("mna-odoo-apps", "mna_approval_matrix", "AM", "Approval Matrix",
      "Multi-level approval on any document, with a trail that cannot be edited"),
 
