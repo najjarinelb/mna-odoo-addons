@@ -144,6 +144,14 @@ def make_icon(path, code):
 
 MODULES = [
     # repo, module, code, title, subtitle
+    ("mna-odoo-apps", "mna_field_service", "FSM",
+     "Field Service Management",
+     "Schedule it, check it, fit the parts, bill what is not covered"),
+
+    ("mna-odoo-apps", "mna_flex_booking", "BOOK",
+     "Flexible Booking for Website",
+     "Any start time, any duration, not fixed slots"),
+
     ("mna-odoo-apps", "mna_quality_control", "QC", "Quality Control",
      "Inspection, sampling plans and corrective action, on Community too"),
 
