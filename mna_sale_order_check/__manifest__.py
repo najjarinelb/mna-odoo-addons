@@ -1,5 +1,5 @@
 {
-    "name": "Sales Order Check",
+    "name": "Sales Order Check | Under Cost, Over Discount & Not Invoiced Audit",
     "version": "19.0.1.0.0",
     "category": "Sales/Sales",
     "summary": "The sales orders sold under cost, discounted past the limit, delivered and never invoiced",

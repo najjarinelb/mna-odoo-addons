@@ -1,5 +1,5 @@
 {
-    "name": "Manufacturing Order Check",
+    "name": "Manufacturing Order Check | MO Audit for Zero Cost & Missing Consumption",
     "version": "19.0.1.0.0",
     "category": "Manufacturing/Manufacturing",
     "summary": "The manufacturing orders that closed wrong, consumed nothing, or will cost you nothing",

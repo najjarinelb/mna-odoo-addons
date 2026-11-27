@@ -1,5 +1,5 @@
 {
-    "name": "Quotation Pipeline Aging",
+    "name": "Quotation Pipeline Aging | Quote Age, Expiry & Win Rate Report",
     "version": "19.0.1.0.0",
     "category": "Sales/Sales",
     "summary": "How old the open quotations are, how many expired, who wins and who does not",

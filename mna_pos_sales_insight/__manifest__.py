@@ -1,5 +1,5 @@
 {
-    "name": "POS Sales Insight",
+    "name": "POS Sales Insight | POS Margin, Discount Cost & Peak Hours Report",
     "version": "19.0.1.0.0",
     "category": "Sales/Point of Sale",
     "summary": "POS reporting with margin, discount cost and peak hours, which the standard report does not carry",

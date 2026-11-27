@@ -1,5 +1,5 @@
 {
-    "name": "POS Session Check",
+    "name": "POS Session Check | Cash Difference & Unposted Session Audit",
     "version": "19.0.1.0.0",
     "category": "Sales/Point of Sale",
     "summary": "Find the Point of Sale sessions that closed short, stayed open, or never reached your accounts",

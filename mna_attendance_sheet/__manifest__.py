@@ -1,5 +1,5 @@
 {
-    "name": "Monthly Attendance Sheet & Late/Early Report",
+    "name": "Monthly Attendance Sheet | Late, Early Leave & Absence Report",
     "version": "19.0.1.0.0",
     "category": "Human Resources/Attendances",
     "summary": "Who came late, who left early, who did not come at all, day by day against the working schedule",

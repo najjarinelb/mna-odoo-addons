@@ -1,5 +1,5 @@
 {
-    "name": "Sequence Gap & Duplicate Report",
+    "name": "Sequence Gap & Duplicate Report | Invoice Numbering Audit for VAT",
     "version": "19.0.1.0.0",
     "category": "Accounting/Accounting",
     "summary": "Find missing and duplicated numbers in invoice and journal entry sequences, for audit and VAT compliance",
