@@ -1,5 +1,5 @@
 {
-    "name": "BoM Where Used (Multi-Level)",
+    "name": "BoM Where Used Multi-Level | Component Usage & Reverse BoM Report",
     "version": "18.0.1.0.0",
     "category": "Manufacturing/Manufacturing",
     "summary": "Every bill of materials that consumes a component, direct and at any depth",

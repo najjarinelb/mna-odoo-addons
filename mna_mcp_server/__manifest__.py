@@ -1,5 +1,5 @@
 {
-    "name": "MCP Server for Odoo (Community)",
+    "name": "MCP Server for Odoo | Connect Claude & ChatGPT to Odoo",
     "version": "18.0.1.0.0",
     "category": "Productivity/Tools",
     "summary": "Connect Claude, ChatGPT and any MCP client to Odoo 18 Community or Enterprise over a native /mcp endpoint",

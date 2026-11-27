@@ -1,5 +1,5 @@
 {
-    "name": "MCP Tool Packs for Odoo",
+    "name": "MCP Tool Packs | AI Tools for Odoo Sales, Accounting, Inventory & Purchase",
     "version": "18.0.1.0.0",
     "category": "Productivity/Tools",
     "summary": "Sales, accounting, inventory and purchase tools for the MCP server, so an AI client gets exact totals instead of adding records up itself",

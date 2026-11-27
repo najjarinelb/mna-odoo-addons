@@ -1,5 +1,5 @@
 {
-    "name": "Currency Rate Auto Update",
+    "name": "Currency Rate Auto Update | Daily ECB Exchange Rates for Odoo Community",
     "version": "18.0.1.0.0",
     "summary": "Daily exchange rates from the ECB and other free providers, "
                "for Odoo Community",

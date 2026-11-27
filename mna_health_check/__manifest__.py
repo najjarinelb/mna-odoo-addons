@@ -1,5 +1,5 @@
 {
-    "name": "Odoo Health Check",
+    "name": "Odoo Health Check | Failed Cron Jobs, Stuck Emails & Database Size Monitor",
     "version": "18.0.1.0.0",
     "category": "Productivity/Tools",
     "summary": "One screen for the things that quietly break: failed scheduled actions, stuck emails, database size and growth",

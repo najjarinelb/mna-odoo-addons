@@ -1,5 +1,5 @@
 {
-    "name": "Time Off Balance & Ledger Report",
+    "name": "Time Off Balance & Ledger | Leave Balance Report per Employee & Type",
     "version": "18.0.1.0.0",
     "category": "Human Resources/Time Off",
     "summary": "Allocated, taken, awaiting approval and remaining, per employee and per type, with every movement behind the figure",
