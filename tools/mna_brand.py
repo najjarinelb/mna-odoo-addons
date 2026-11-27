@@ -144,18 +144,10 @@ def make_icon(path, code):
 
 MODULES = [
     # repo, module, code, title, subtitle
-    ("mna-odoo-apps", "mna_subscription", "SUB",
-     "Subscriptions & Recurring Billing",
-     "MRR, churn, prorated upgrades and automatic dunning"),
 
-    ("mna-odoo-apps", "mna_helpdesk", "HELP",
-     "Helpdesk & Support Tickets",
-     "SLA clocks in working hours, portal, email alias, ratings"),
-
-    ("mna-odoo-apps", "mna_field_service", "FSM",
-     "Field Service Management",
-     "Schedule it, check it, fit the parts, bill what is not covered"),
-
+    ("mna-odoo-apps", "mna_workforce_planning", "PLAN",
+     "Workforce Shift Planning",
+     "Rosters, working time rules, open shifts and labour cost"),
     ("mna-odoo-apps", "mna_flex_booking", "BOOK",
      "Flexible Booking for Website",
      "Any start time, any duration, not fixed slots"),
